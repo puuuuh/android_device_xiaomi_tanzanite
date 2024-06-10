@@ -1,6 +1,7 @@
-r_dir_file(mtk_hal_camera, camera_persist_file)
-r_dir_file(mtk_hal_camera, persist_data_file)
-rw_dir_file(mtk_hal_camera, sysfs_therm)
+allow mtk_hal_camera camera_persist_file:{ dir file } { r_dir_perms r_file_perms };
+allow mtk_hal_camera persist_data_file:{ dir file } { r_dir_perms r_file_perms };
+allow mtk_hal_camera sysfs_therm:dir r_dir_perms;
+allow mtk_hal_camera sysfs_therm:file rw_file_perms;
 
 allow mtk_hal_camera vendor_camera_data_file:dir rw_dir_perms;
 allow mtk_hal_camera vendor_camera_data_file:file create_file_perms;

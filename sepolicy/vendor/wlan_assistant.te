@@ -1,4 +1,5 @@
 allow wlan_assistant sysfs_dt_firmware_android:dir { search };
 allow wlan_assistant metadata_file:dir { read open search };
 
-rw_dir_file(wlan_assistant, sysfs_dt_firmware_android)
+allow wlan_assistant sysfs_dt_firmware_android:dir r_dir_perms;
+allow wlan_assistant sysfs_dt_firmware_android:file rw_file_perms;
