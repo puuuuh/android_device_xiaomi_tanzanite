@@ -8,14 +8,14 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common MikuUI stuff.
+$(call inherit-product, vendor/miku/build/product/miku_product.mk)
 
 # Inherit from tanzanite device
 $(call inherit-product, device/xiaomi/tanzanite/device.mk)
 
 PRODUCT_DEVICE := tanzanite
-PRODUCT_NAME := lineage_tanzanite
+PRODUCT_NAME := miku_tanzanite
 PRODUCT_BRAND := Redmi
 PRODUCT_MODEL := 24117RN76O
 PRODUCT_MANUFACTURER := xiaomi
