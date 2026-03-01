@@ -64,12 +64,9 @@ BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 # Kill lineage kernel build task while preserving kernel
 TARGET_NO_KERNEL_OVERRIDE := true
 
-# Workaround to make lineage's soong generator work
-TARGET_KERNEL_SOURCE := device/xiaomi/tanzanite-kernel/kernel-headers
-
 LOCAL_KERNEL := $(KERNEL_PATH)/Image.gz
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
+TARGET_PREBUILT_KERNEL := $(LOCAL_KERNEL)
+BOARD_KERNEL_BINARIES := kernel
 
 # DTB
 BOARD_PREBUILT_DTBOIMAGE := $(KERNEL_PATH)/dtbo.img
