@@ -96,7 +96,6 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.service.mediatek \
     android.hardware.audio@7.0-impl:64 \
     android.hardware.audio.effect@7.0-impl:64 \
-    audio.bluetooth.default:64 \
     audio.usb.default:64
 
 PRODUCT_PACKAGES += \
@@ -120,9 +119,8 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml
 
 # Bluetooth
-PRODUCT_PACKAGES += \
-    android.hardware.bluetooth-service.mediatek \
-    android.hardware.bluetooth.audio-impl:64
+#PRODUCT_PACKAGES += \
+#    android.hardware.bluetooth-service.mediatek
 
 # Boot control (A/B Updates)
 PRODUCT_PACKAGES += \
@@ -228,8 +226,6 @@ $(foreach sku, tanzanite_e_eea tanzanite_n_gl, \
 # Power
 $(call soong_config_set,power_libperfmgr,mode_extension_lib, //$(LOCAL_PATH):libperfmgr-ext-xiaomi)
 PRODUCT_PACKAGES += \
-    android.hardware.power-service.lineage-libperfmgr \
-    vendor.mediatek.hardware.mtkpower@1.2-service.stub \
     libmtkperf_client_vendor \
     libmtkperf_client \
     libpowerhalwrap_vendor
