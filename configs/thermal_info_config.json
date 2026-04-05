@@ -41,10 +41,6 @@
   ],
   "CoolingDevices": [
     {
-      "Name": "thermal-devfreq-0",
-      "Type": "CPU"
-    },
-    {
       "Name": "mutt-pa1",
       "Type": "MODEM"
     }

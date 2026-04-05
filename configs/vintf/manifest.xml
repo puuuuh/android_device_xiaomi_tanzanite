@@ -26,6 +26,11 @@
         device/mediatek/vendor/common/manifest.xml
 -->
 <manifest version="9.0" type="device" target-level="7">
+    <hal format="hidl">
+        <name>android.hardware.audio</name>
+        <transport>hwbinder</transport>
+        <fqname>@7.1::IDevicesFactory/default</fqname>
+    </hal>
     <hal format="aidl">
         <name>android.hardware.radio.config</name>
         <version>4</version>
@@ -159,14 +164,49 @@
         <fqname>IMtkRadioExData/slot2</fqname>
     </hal>
     <hal format="aidl">
+        <name>vendor.mediatek.hardware.mtkradioex.dch</name>
+        <version>2</version>
+        <fqname>IMtkRadioExDc/slot1</fqname>
+        <fqname>IMtkRadioExDc/slot2</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>vendor.mediatek.hardware.mtkradioex.ims</name>
+        <version>3</version>
+        <fqname>IMtkRadioExIms/slot1</fqname>
+        <fqname>IMtkRadioExIms/slot2</fqname>
+    </hal>
+    <hal format="aidl">
         <name>vendor.mediatek.hardware.mtkradioex.messaging</name>
         <fqname>IMtkRadioExMessaging/slot1</fqname>
         <fqname>IMtkRadioExMessaging/slot2</fqname>
     </hal>
     <hal format="aidl">
+        <name>vendor.mediatek.hardware.mtkradioex.modem</name>
+        <version>5</version>
+        <fqname>IMtkRadioExModem/slot1</fqname>
+        <fqname>IMtkRadioExModem/slot2</fqname>
+    </hal>
+    <hal format="aidl">
         <name>vendor.mediatek.hardware.mtkradioex.network</name>
         <fqname>IMtkRadioExNetwork/slot1</fqname>
         <fqname>IMtkRadioExNetwork/slot2</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>vendor.mediatek.hardware.mtkradioex.ntn</name>
+        <fqname>IMtkRadioExNtn/slot1</fqname>
+        <fqname>IMtkRadioExNtn/slot2</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>vendor.mediatek.hardware.mtkradioex.rcs</name>
+        <version>2</version>
+        <fqname>IMtkRadioExRcs/slot1</fqname>
+        <fqname>IMtkRadioExRcs/slot2</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>vendor.mediatek.hardware.mtkradioex.sim</name>
+        <version>2</version>
+        <fqname>IMtkRadioExSim/slot1</fqname>
+        <fqname>IMtkRadioExSim/slot2</fqname>
     </hal>
     <hal format="aidl">
         <name>vendor.mediatek.hardware.mtkradioex.voice</name>

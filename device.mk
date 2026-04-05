@@ -20,10 +20,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/userspace_reboot.mk)
 $(call inherit-product-if-exists, vendor/private/keys/keys.mk)
 
 # ViPER4AndroidFX
-$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
+# $(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
 
 # Dolby
-$(call inherit-product-if-exists, hardware/dolby/dolby.mk)
+# $(call inherit-product-if-exists, hardware/dolby/dolby.mk)
 
 # Bootanimation
 TARGET_SCREEN_HEIGHT := 1080
@@ -45,6 +45,10 @@ AB_OTA_PARTITIONS := \
     vbmeta \
     vbmeta_system \
     vbmeta_vendor
+
+#PRODUCT_PACKAGES += \
+#    android.frameworks.sensorservice-V1-ndk.vendor \
+#    android.frameworks.sensorservice@1.0.vendor
 
 PRODUCT_PACKAGES += \
     create_pl_dev \
@@ -73,15 +77,7 @@ AB_OTA_POSTINSTALL_CONFIG += \
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Compressed Virtual A/B
-ifneq ($(WITH_GMS),true)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
 TARGET_RO_FILE_SYSTEM_TYPE := ext4
-else
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/vabc_features.mk)
-PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
-TARGET_RO_FILE_SYSTEM_TYPE := erofs
-PRODUCT_VENDOR_PROPERTIES += ro.virtual_ab.compression.threads=true
-endif
 
 # Boot control (A/B Updates)
 PRODUCT_PACKAGES += \
@@ -93,9 +89,12 @@ TARGET_EXCLUDES_AUDIOFX := true
 $(call soong_config_set_bool,android_hardware_audio,skip_speaker_layout_channel_mask_field,true)
 $(call soong_config_set,android_hardware_audio,run_64bit,true)
 PRODUCT_PACKAGES += \
-    android.hardware.audio.service.mediatek \
+    android.hardware.audio@6.0-impl:64 \
     android.hardware.audio@7.0-impl:64 \
+    android.hardware.audio@7.1-impl:64 \
+    android.hardware.audio.effect@6.0-impl:64 \
     android.hardware.audio.effect@7.0-impl:64 \
+    audio.bluetooth.default:64 \
     audio.usb.default:64
 
 PRODUCT_PACKAGES += \
@@ -109,18 +108,18 @@ PRODUCT_PACKAGES += \
     MtkInCallService
 
 # Audio Configuration
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/audio/,$(TARGET_COPY_OUT_VENDOR)/etc)
+#PRODUCT_COPY_FILES += \
+#    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/audio/,$(TARGET_COPY_OUT_VENDOR)/etc)
 
-PRODUCT_COPY_FILES += \
-    frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml \
-    frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
-    frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml \
-    frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml
+#PRODUCT_COPY_FILES += \
+#    frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml \
+#    frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
+#    frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml \
+#    frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml
 
 # Bluetooth
 #PRODUCT_PACKAGES += \
-#    android.hardware.bluetooth-service.mediatek
+#    android.hardware.bluetooth-service.vendor
 
 # Boot control (A/B Updates)
 PRODUCT_PACKAGES += \
@@ -129,8 +128,8 @@ PRODUCT_PACKAGES += \
 
 # Display
 PRODUCT_PACKAGES += \
-    android.hardware.graphics.composer@2.3-service \
-    android.hardware.memtrack-service.mediatek \
+    android.hardware.graphics.composer@3.4-service \
+    android.hardware.memtrack-service.mediatek-mali \
     android.software.vulkan.deqp.level-2021-03-01.prebuilt.xml \
     android.software.opengles.deqp.level-2021-03-01.prebuilt.xml
 
@@ -146,13 +145,12 @@ PRODUCT_PACKAGES += \
     fastbootd
 
 # Fingerprint
+$(call soong_config_set,XIAOMI_BIOMETRICS_FINGERPRINT,IMPL_VER,V1)
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint-service.xiaomi \
     libudfpshandler
 
-PRODUCT_PACKAGES += \
-    libudfpshandler \
-    sensors.xiaomi.v2:64
+# Sensors
 
 PRODUCT_PACKAGES += \
     vendor.xiaomi.hardware.fx.tunnel@1.0.vendor
@@ -173,11 +171,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     FMRadio
 
-# Gatekeeper
-PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0-impl:64 \
-    android.hardware.gatekeeper@1.0-service
-
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health-service.example \
@@ -187,11 +180,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.light-service.lineage
 
-# MediaCas
-PRODUCT_PACKAGES += \
-    android.hardware.cas@1.2-service-lazy
-
 # Media (C2)
+$(call soong_config_set_bool,android_hardware_mediatek_codec2,link_v33_libstagefright_foundation,true)
 PRODUCT_PACKAGES += \
     android.hardware.media.c2-mtk-service \
     libcodec2_soft_common.vendor:64 \
@@ -199,8 +189,8 @@ PRODUCT_PACKAGES += \
     libeffectsconfig.vendor:64
 
 # Media
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/media/,$(TARGET_COPY_OUT_VENDOR)/etc)
+#PRODUCT_COPY_FILES += \
+#    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/media/,$(TARGET_COPY_OUT_VENDOR)/etc)
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -225,9 +215,10 @@ $(foreach sku, tanzanite_e_eea tanzanite_n_gl, \
 # Power
 $(call soong_config_set,power_libperfmgr,mode_extension_lib, //$(LOCAL_PATH):libperfmgr-ext-xiaomi)
 PRODUCT_PACKAGES += \
+    android.hardware.power@1.2 \
+    vendor.mediatek.hardware.power@1.1 \
     libmtkperf_client_vendor \
-    libmtkperf_client \
-    libpowerhalwrap_vendor
+    libmtkperf_client
 
 # Power configurations
 PRODUCT_COPY_FILES += \
@@ -237,10 +228,18 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SYSTEM_SERVER_DEBUG_INFO := false
 
 # Sensors
+#PRODUCT_PACKAGES += \
+    #android.hardware.sensors-service.xiaomi-multihal \
+    #android.hardware.sensors@2.0-subhal-impl-1.0:64 \
+    #sensors.dynamic_sensor_hal:64
+    #android.hardware.sensors@2.1-service.multihal.rc
+    #sensors.xiaomi.v2
+
 PRODUCT_PACKAGES += \
-    android.hardware.sensors-service.xiaomi-multihal \
-    android.hardware.sensors@2.0-subhal-impl-1.0:64 \
-    sensors.dynamic_sensor_hal:64
+    android.hardware.sensors-service.multihal
+
+#PRODUCT_PACKAGES += \
+#    sensors.dynamic_sensor_hal
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
@@ -266,12 +265,11 @@ $(call soong_config_set,android_hardware_mediatek_usb,audio_accessory_supported,
 
 # Wifi
 $(call soong_config_set,wpa_supplicant_8,board_wlan_mediatek_stability,true)
-
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
     wpa_supplicant \
-    hostapd \
-    libwifi-hal-wrapper:64
+    hostapd 
+    #libwifi-hal-wrapper:64
 
 # Wifi configs
 PRODUCT_COPY_FILES += \
@@ -323,6 +321,8 @@ PRODUCT_PACKAGES += \
     init.insmod.sh \
     init.insmod.mtk.cfg \
     init.connectivity.rc \
+    init_connectivity.rc \
+    init.connectivity.common.rc \
     init.fingerprint.rc \
     init.modem.rc \
     init.mt6789.rc \
@@ -377,7 +377,7 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/google/pixel
 
 # Shipping API Level
-PRODUCT_SHIPPING_API_LEVEL := 31
+PRODUCT_SHIPPING_API_LEVEL := 33
 
 # Speed profile services and wifi-service to reduce RAM and storage.
 PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile

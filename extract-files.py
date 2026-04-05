@@ -39,15 +39,6 @@ lib_fixups: lib_fixups_user_type = {
 }
 
 
-def fixup_ndk_platform(libname: str) -> tuple[str, str]:
-    """
-    Replace -ndk_platform with -ndk
-    """
-    return (libname, libname.replace("-ndk_platform.so", "-ndk.so"))
-
-
-patchelf_version = "0_17_2"
-
 def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
     return f'{lib}_{partition}' if partition == 'vendor' else None
 
@@ -58,55 +49,14 @@ lib_fixups: lib_fixups_user_type = {
 }
 
 blob_fixups: blob_fixups_user_type = {
-    "vendor/etc/init/android.hardware.graphics.allocator@4.0-service-mediatek.rc": blob_fixup()
-        .regex_replace(
-            "android.hardware.graphics.allocator@4.0-service-mediatek",
-            "mt6789/android.hardware.graphics.allocator@4.0-service-mediatek.mt6789",
-        ),
-    (
-        "vendor/lib/libwvhidl.so",
-        "vendor/lib/mediadrm/libwvdrmengine.so",
-        "vendor/lib64/libwvhidl.so",
-        "vendor/lib64/mediadrm/libwvdrmengine.so",
-    ): blob_fixup()
-        .patchelf_version(patchelf_version)
-        .replace_needed("libprotobuf-cpp-lite-3.9.1.so", "libprotobuf-cpp-full-3.9.1.so"),
-    (
-        "vendor/bin/mnld",
-        "vendor/lib64/hw/android.hardware.sensors@2.X-subhal-mediatek.so",
-        "vendor/lib64/mt6789/libaalservice.so",
-    ): blob_fixup()
-        .patchelf_version(patchelf_version)
-        .replace_needed("libsensorndkbridge.so", "android.hardware.sensors@1.0-convert-shared.so"),
-    "vendor/lib64/mt6789/libcam.utils.sensorprovider.so": blob_fixup()
-        .add_needed("android.hardware.sensors@1.0-convert-shared.so"),
-    "vendor/etc/init/android.hardware.bluetooth@1.1-service-mediatek.rc": blob_fixup()
-        .regex_replace(
-            "on property:vts(.|\n)*", ""
-        ),
-    "vendor/etc/init/android.hardware.neuralnetworks-shim-service-mtk.rc": blob_fixup()
-        .regex_replace(
-            "start", "enable"
-        ),
-    (
-        "vendor/lib64/libteei_daemon_vfs.so",
-        "vendor/lib64/mt6789/lib3a.flash.so",
-        "vendor/lib64/mt6789/libaaa_ltm.so",
-        "vendor/lib64/mt6789/lib3a.ae.stat.so",
-        "vendor/lib64/mt6789/lib3a.sensors.color.so",
-        "vendor/lib64/mt6789/lib3a.sensors.flicker.so",
-        "vendor/lib64/libSQLiteModule_VER_ALL.so",
-    ): blob_fixup()
-        .patchelf_version(patchelf_version)
-        .add_needed("liblog.so"),
-    (
-        "vendor/lib64/mt6789/libmtkcam_stdutils.so",
-        "vendor/lib64/hw/mt6789/android.hardware.camera.provider@2.6-impl-mediatek.so"
-    ): blob_fixup()
-        .patchelf_version(patchelf_version)
-        .replace_needed("libutils.so", "libutils-v32.so"),
+    "system_ext/bin/hw/android.hardware.audio.parameter_parser.service": blob_fixup()
+        .replace_needed("android.hardware.audio.core-V3-ndk.so", "android.hardware.audio.core-V4-ndk.so"),
     "vendor/lib64/libmorpho_video_stabilizer.so": blob_fixup()
         .add_needed("libutils.so"),
+    (
+        "vendor/lib64/android.hardware.audio.core-impl-mediatek.so",
+    ): blob_fixup()
+        .add_needed("libaudioutils_shim.so"),
     (
         'vendor/lib64/libmorpho_Ldc.so',
         'vendor/lib64/libTrueSight.so',
@@ -127,8 +77,6 @@ blob_fixups: blob_fixups_user_type = {
         .clear_symbol_version('AHardwareBuffer_createFromHandle')
         .clear_symbol_version('AHardwareBuffer_getNativeHandle')
         .clear_symbol_version('AHardwareBuffer_isSupported'),
-    ('vendor/lib64/hw/android.hardware.gnss-impl-mediatek.so', 'vendor/bin/hw/android.hardware.gnss-service.mediatek'): blob_fixup()
-        .replace_needed('android.hardware.gnss-V1-ndk_platform.so', 'android.hardware.gnss-V1-ndk.so'),
     'vendor/lib64/mt6789/libneuralnetworks_sl_driver_mtk_prebuilt.so': blob_fixup()
         .clear_symbol_version('AHardwareBuffer_allocate')
         .clear_symbol_version('AHardwareBuffer_createFromHandle')
@@ -147,31 +95,69 @@ blob_fixups: blob_fixups_user_type = {
     (
         'vendor/bin/mnld',
         'vendor/lib64/libmifpext.so',
-        'vendor/lib64/hw/mt6789/vendor.mediatek.hardware.pq_aidl-impl.so',
+        'vendor/lib64/mt6789/libcam.utils.sensorprovider.so',
         'vendor/lib/hw/mt6789/vendor.mediatek.hardware.pq_aidl-impl.so',
-        'vendor/lib64/mt6789/libcam.utils.sensorprovider.so'
+        'vendor/lib64/hw/mt6789/vendor.mediatek.hardware.pq_aidl-impl.so'
     ): blob_fixup()
         .replace_needed('android.hardware.sensors-V2-ndk.so', 'android.hardware.sensors-V3-ndk.so'),
-    'vendor/lib64/hw/audio.primary.mediatek.so': blob_fixup()
+    (
+        'vendor/bin/hw/vendor.xiaomi.sensor.citsensorservice.aidl',
+        'vendor/lib/hw/audio.primary.mediatek.so',
+        'vendor/lib/hw/android.hardware.audio.effect.aidl-impl-mediatek.so',
+        'vendor/lib/hw/displayfeature.default.so',
+        'vendor/lib/hw/mt6789/vendor.mediatek.hardware.pq_aidl-impl.so',
+        'vendor/lib/lib_power_applist.so',
+        'vendor/lib/libeffectsconfig.so',
+        'vendor/lib/libpowerhal.so',
+        'vendor/lib/libpqxmlflagparser.so',
+        'vendor/lib/libpqxmlparser.so',
+        'vendor/lib/librt_extamp_intf.so',
+        'vendor/lib64/hw/audio.primary.mediatek.so',
+        'vendor/lib64/hw/displayfeature.default.so',
+        'vendor/lib64/hw/hwcomposer.mtk_common.so',
+        'vendor/lib64/hw/mt6789/vendor.mediatek.hardware.pq_aidl-impl.so',
+        'vendor/lib64/lib_power_applist.so',
+        'vendor/lib64/libeffectsconfig.so',
+        'vendor/lib64/libpowerhal.so',
+        'vendor/lib64/libpqxmlflagparser.so',
+        'vendor/lib64/libpqxmlparser.so',
+        'vendor/lib64/librt_extamp_intf.so',
+        'vendor/lib64/libsilkybrightnesscore.so',
+        'vendor/lib64/hw/audio.primary.mediatek.so',
+        'vendor/lib64/hw/android.hardware.audio.effect.aidl-impl-mediatek.so',
+        'vendor/lib64/hw/audio.primary.mediatek.so',
+        'vendor/lib64/hw/displayfeature.default.so',
+        'vendor/lib64/hw/hwcomposer.mtk_common.so',
+        'vendor/lib64/hw/mt6789/vendor.mediatek.hardware.pq_aidl-impl.so',
+        'vendor/lib64/lib_power_applist.so',
+        'vendor/lib64/libeffectsconfig.so',
+        'vendor/lib64/libpowerhal.so',
+        'vendor/lib64/libpqxmlflagparser.so',
+        'vendor/lib64/libpqxmlparser.so',
+        'vendor/lib64/librt_extamp_intf.so',
+        'vendor/lib64/libsilkybrightnesscore.so',
+    ): blob_fixup()
+        .replace_needed('libtinyxml2.so', 'libtinyxml2-v34.so'),
+    (
+        'vendor/lib64/hw/audio.primary.mediatek.so',
+    ): blob_fixup()
         .replace_needed('android.hardware.bluetooth.audio-V4-ndk.so', 'android.hardware.bluetooth.audio-V5-ndk.so')
         .replace_needed('android.hardware.audio.effect-V2-ndk.so', 'android.hardware.audio.effect-V3-ndk.so')
         .replace_needed('android.media.audio.common.types-V4-ndk.so', 'android.media.audio.common.types-V5-ndk.so'),
-    'vendor/lib64/libbluetooth_audio_session_aidl_mtk.so': blob_fixup()
-        .replace_needed('android.hardware.audio.effect-V2-ndk.so', 'android.hardware.audio.effect-V3-ndk.so'),
     (
+        'vendor/lib/vendor.mediatek.hardware.pq_aidl-V3-ndk.so',
+        'vendor/lib/vendor.mediatek.hardware.pq_aidl-V7-ndk.so',
+        'vendor/lib64/vendor.mediatek.hardware.pq_aidl-V3-ndk.so',
+        'vendor/lib64/vendor.mediatek.hardware.pq_aidl-V7-ndk.so',
         'vendor/lib64/mt6789/libmtkcam_grallocutils.so',
         'vendor/lib64/hw/hwcomposer.mtk_common.so',
-        'vendor/lib64/vendor.mediatek.hardware.pq_aidl-V7-ndk.so',
-        'vendor/lib64/vendor.mediatek.hardware.pq_aidl-V3-ndk.so',
-        'vendor/lib/vendor.mediatek.hardware.pq_aidl-V7-ndk.so',
-        'vendor/lib/vendor.mediatek.hardware.pq_aidl-V3-ndk.so',
         'vendor/lib64/libcodec2_fsr.so',
         'vendor/lib64/hw/mt6789/android.hardware.graphics.allocator-V2-mediatek.so',
         'vendor/lib64/hw/mt6789/mapper.mediatek.so',
         'vendor/lib/hw/mt6789/mapper.mediatek.so',
         'vendor/lib64/libgpud.so',
         'vendor/lib/libgpud.so',
-        'vendor/bin/hw/mt6789/android.hardware.graphics.allocator-V2-service-mediatek.mt6789',
+        'vendor/bin/hw/android.hardware.graphics.allocator-V2-service-mediatek',
         'vendor/lib64/hw/mt6789/android.hardware.graphics.allocator-V2-mediatek.so',
         'vendor/lib/hw/mt6789/android.hardware.graphics.allocator-V2-mediatek.so',
         'vendor/lib64/vendor.mediatek.hardware.camera.isphal-V1-ndk.so',
@@ -180,9 +166,14 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('android.hardware.graphics.common-V6-ndk.so', 'android.hardware.graphics.common-V7-ndk.so')
         .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
     (
-        'vendor/bin/hw/vendor.mediatek.hardware.mtkpower-service.mediatek'
+        'vendor/lib64/hw/audio.primary.mt6789.so'
     ): blob_fixup()
-        .replace_needed('android.hardware.power-V6-ndk.so', 'android.hardware.power-V2-ndk.so')
+        .replace_needed('android.hardware.audio.effect-V2-ndk.so', 'android.hardware.audio.effect-V3-ndk.so')
+        .replace_needed('android.hardware.bluetooth.audio-V4-ndk.so', 'android.hardware.bluetooth.audio-V5-ndk.so')
+        .replace_needed('android.media.audio.common.types-V3-ndk.so', 'android.media.audio.common.types-V4-ndk.so'),
+
+    'vendor/bin/hw/android.hardware.wifi-service-lazy': blob_fixup()
+        .replace_needed('android.hardware.wifi-V3-ndk.so', 'android.hardware.wifi-V4-ndk.so')
 }  # fmt: skip
 
 module = ExtractUtilsModule(

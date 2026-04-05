@@ -10,6 +10,7 @@ on boot
 
     chmod 0666 /dev/xiaomi-fp
     chown system system /dev/xiaomi-fp
+    chmod 0666 /dev/input/event5
 
 on post-fs-data
     mkdir /data/vendor/misc 01771 system system
@@ -19,6 +20,10 @@ on post-fs-data
     mkdir /data/vendor/fpdump 0770 system system
     mkdir /data/vendor/goodix 0770 system system
     mkdir /data/vendor/fingerprint 0770 system system
-    mkdir /mnt/vendor/persist/goodix 0770 system system
+    mkdir /mnt/vendor/persist/fingerprint 0777 system system
     mkdir /mnt/vendor/persist/fingerprint/jiiov 0777 system system
+    mkdir /mnt/vendor/persist/goodix 0770 system system
     chown system system /data/vendor
+
+on property:vendor.fps_hal.restartimes=max
+    stop vendor.fps_hal
