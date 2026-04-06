@@ -20,9 +20,8 @@ prebuilt_etc {
 
 prebuilt_etc {
     name: "ueventd.mt6789.rc",
-    filename: "ueventd.rc",
+    filename: "ueventd.mt6789.rc",
     src: "etc/ueventd.mt6789.rc",
-    vendor: true
 }
 
 sh_binary {
