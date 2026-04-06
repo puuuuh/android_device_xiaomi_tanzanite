@@ -1407,10 +1407,10 @@ vendor/lib64/libwvkeybox.so
 # Fingerprint
 vendor/app/JVFactoryTest_O7/JVFactoryTest_O7.apk
 vendor/app/goodix_sz/goodix_sz.apk
-vendor/etc/vintf/manifest/fp-aidl.xml
 
 vendor/odm/lib64/hw/fingerprint.goodix_fod.so:vendor/lib64/hw/fingerprint.goodix_fod.default.so;FIX_SONAME
 vendor/odm/lib64/hw/fingerprint.jiiov.so:vendor/lib64/hw/fingerprint.jiiov.default.so;FIX_SONAME
+vendor/etc/vintf/manifest/fp-aidl.xml
 vendor/lib64/vendor.xiaomi.hardware.fingerprintextension-V1-ndk.so
 vendor/lib64/hw/libgf_hal.so
 vendor/lib64/hw/anc.hal.so

@@ -20,10 +20,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/userspace_reboot.mk)
 $(call inherit-product-if-exists, vendor/private/keys/keys.mk)
 
 # ViPER4AndroidFX
-# $(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
+$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
 
 # Dolby
-# $(call inherit-product-if-exists, hardware/dolby/dolby.mk)
+$(call inherit-product-if-exists, hardware/dolby/dolby.mk)
 
 # Bootanimation
 TARGET_SCREEN_HEIGHT := 1080
@@ -45,10 +45,6 @@ AB_OTA_PARTITIONS := \
     vbmeta \
     vbmeta_system \
     vbmeta_vendor
-
-#PRODUCT_PACKAGES += \
-#    android.frameworks.sensorservice-V1-ndk.vendor \
-#    android.frameworks.sensorservice@1.0.vendor
 
 PRODUCT_PACKAGES += \
     create_pl_dev \
@@ -77,7 +73,16 @@ AB_OTA_POSTINSTALL_CONFIG += \
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Compressed Virtual A/B
+ifneq ($(WITH_GMS),true)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
 TARGET_RO_FILE_SYSTEM_TYPE := ext4
+else
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/vabc_features.mk)
+PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
+TARGET_RO_FILE_SYSTEM_TYPE := erofs
+PRODUCT_VENDOR_PROPERTIES += ro.virtual_ab.compression.threads=true
+endif
+
 
 # Boot control (A/B Updates)
 PRODUCT_PACKAGES += \
@@ -118,8 +123,8 @@ PRODUCT_PACKAGES += \
 #    frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml
 
 # Bluetooth
-#PRODUCT_PACKAGES += \
-#    android.hardware.bluetooth-service.vendor
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth-service.vendor
 
 # Boot control (A/B Updates)
 PRODUCT_PACKAGES += \
@@ -145,13 +150,12 @@ PRODUCT_PACKAGES += \
     fastbootd
 
 # Fingerprint
-$(call soong_config_set,XIAOMI_BIOMETRICS_FINGERPRINT,IMPL_VER,V1)
+$(call soong_config_set,XIAOMI_BIOMETRICS_FINGERPRINT,IMPL_VER,V2)
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint-service.xiaomi \
     libudfpshandler
 
 # Sensors
-
 PRODUCT_PACKAGES += \
     vendor.xiaomi.hardware.fx.tunnel@1.0.vendor
 
@@ -227,19 +231,8 @@ PRODUCT_COPY_FILES += \
 # Reduce system server verbosity.
 PRODUCT_SYSTEM_SERVER_DEBUG_INFO := false
 
-# Sensors
-#PRODUCT_PACKAGES += \
-    #android.hardware.sensors-service.xiaomi-multihal \
-    #android.hardware.sensors@2.0-subhal-impl-1.0:64 \
-    #sensors.dynamic_sensor_hal:64
-    #android.hardware.sensors@2.1-service.multihal.rc
-    #sensors.xiaomi.v2
-
 PRODUCT_PACKAGES += \
     android.hardware.sensors-service.multihal
-
-#PRODUCT_PACKAGES += \
-#    sensors.dynamic_sensor_hal
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
