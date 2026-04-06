@@ -200,11 +200,9 @@ PRODUCT_PACKAGES += \
 
 # NFC
 PRODUCT_PACKAGES += \
+    android.hardware.nfc-service.nxp \
     com.android.nfc_extras \
     Tag
-
-PRODUCT_PACKAGES += \
-    android.hardware.nfc-service.nxp
 
 $(foreach sku, tanzanite_e_eea tanzanite_n_gl, \
     $(eval PRODUCT_COPY_FILES += \
@@ -221,10 +219,13 @@ $(foreach sku, tanzanite_e_eea tanzanite_n_gl, \
 # Power
 $(call soong_config_set,power_libperfmgr,mode_extension_lib, //$(LOCAL_PATH):libperfmgr-ext-xiaomi)
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.2 \
-    vendor.mediatek.hardware.power@1.1 \
+    android.hardware.power-service.lineage-libperfmgr \
+    libmtkperf_client \
     libmtkperf_client_vendor \
-    libmtkperf_client
+    libpowerhalwrap_vendor
+
+PRODUCT_PACKAGES += \
+    PowerOffAlarm
 
 # Power configurations
 PRODUCT_COPY_FILES += \
