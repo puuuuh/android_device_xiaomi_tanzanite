@@ -124,7 +124,9 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth-service.vendor
+    android.hardware.bluetooth-service.mediatek \
+    android.hardware.bluetooth.ranging-service.default \
+    android.hardware.bluetooth.finder-service.default
 
 # Boot control (A/B Updates)
 PRODUCT_PACKAGES += \
