@@ -3,3 +3,5 @@ allow hal_audio_default sysfs_power_supply:file r_file_perms;
 allow hal_audio_default sysfs_power_supply:dir search;
 set_prop(hal_audio_default, vendor_mtk_audio_prop)
 
+allow atcid atci-audio_socket:sock_file write;
+allow hal_audio_default audio_socket:sock_file write;

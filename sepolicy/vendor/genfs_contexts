@@ -1,15 +1,12 @@
 # Display
-genfscon sysfs /devices/virtual/mi_display/disp_feature/disp-DSI-0/disp_param                         u:object_r:vendor_displayfeature_sysfs:s0
+genfscon sysfs /devices/virtual/mi_display/disp_feature/disp-DSI-0                         u:object_r:vendor_sysfs_displayfeature:s0
 
 # Extcon
 genfscon sysfs /devices/platform/extcon_usb1 u:object_r:sysfs_extcon:s0
 genfscon sysfs /devices/platform/extcon_usb u:object_r:sysfs_extcon:s0
+genfscon sysfs /devices/platform/soc/soc:extcon_usb u:object_r:sysfs_extcon:s0
 
 # Health
-genfscon sysfs /devices/platform/hq_chg_manager/power_supply/battery u:object_r:sysfs_power_supply:s0
-genfscon sysfs /devices/platform/hq_chg_manager/power_supply/usb u:object_r:sysfs_power_supply:s0
-genfscon sysfs /devices/platform/hq_chg_manager/power_supply/charger/type u:object_r:sysfs_power_supply:s0
-genfscon sysfs /devices/platform/soc/soc:hq_chg_manager/power_supply/usb/real_type u:object_r:sysfs_power_supply:s0
 genfscon sysfs /devices/platform/soc/11f00000.i2c/i2c-7/7-0055/power_supply/bms u:object_r:sysfs_power_supply:s0
 genfscon sysfs /devices/platform/soc/11f00000.i2c/i2c-7/7-0055/verify_digest u:object_r:sysfs_power_supply:s0
 genfscon sysfs /devices/platform/soc/11f00000.i2c/i2c-7/7-0065/power_supply u:object_r:sysfs_power_supply:s0
@@ -23,6 +20,7 @@ genfscon sysfs /devices/platform/xm_pd_adapter/Charging_Adapter/pd_adapter/curre
 genfscon sysfs /devices/platform/xm_pd_adapter/Charging_Adapter/pd_adapter/request_vdm_cmd u:object_r:sysfs_power_supply:s0
 genfscon sysfs /devices/platform/soc/11b21000.i2c/i2c-5/5-0034/11b21000.i2c:mt6375@34:chg/power_supply/ u:object_r:sysfs_power_supply:s0
 genfscon sysfs /devices/platform/soc/11b21000.i2c/i2c-5/5-0034/11b21000.i2c:mt6375@34:mtk_gauge/power_supply/ u:object_r:sysfs_power_supply:s0
+genfscon sysfs /devices/platform/soc/11f00000.i2c/i2c-7/7-006a/power_supply/ u:object_r:sysfs_power_supply:s0
 
 # Fingerprint
 genfscon sysfs /devices/virtual/touch/touch_dev/fod_press_status u:object_r:vendor_fingerprint_sysfs:s0
@@ -35,9 +33,12 @@ genfscon proc /mitee_log 									 u:object_r:proc_mitee_log:s0
 
 # Wakeup (https://lkml.org/lkml/2019/8/6/1275)
 genfscon sysfs /devices/platform/1a000000.camisp_legacy/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/hq_chg_manager/power_supply/battery/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/hq_chg_manager/power_supply/charger/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/hq_chg_manager/power_supply/usb/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/hq_chg_manager/power_supply/battery/wakeup24 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/hq_chg_manager/power_supply/battery/wakeup25 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/hq_chg_manager/power_supply/charger/wakeup25 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/hq_chg_manager/power_supply/charger/wakeup26 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/hq_chg_manager/power_supply/usb/wakeup23 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/hq_chg_manager/power_supply/usb/wakeup24 u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/hq_chg_manager/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/10026000.pwrap/10026000.pwrap:mt6366/mt6358-gauge/power_supply/bms/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/10026000.pwrap/10026000.pwrap:mt6366/mt6358-gauge/power_supply/mtk-gauge/wakeup u:object_r:sysfs_wakeup:s0
@@ -54,6 +55,10 @@ genfscon sysfs /devices/platform/soc/11e00000.i2c/i2c-0/0-0038/wakeup u:object_r
 genfscon sysfs /devices/platform/soc/11f00000.i2c/i2c-7/7-0065/power_supply/sc-cp-master/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/11f00000.i2c/i2c-7/7-0065/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/1f000000.mdp/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/11017000.i2c/i2c-5/5-0061/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/11017000.i2c/i2c-5/5-0062/tcpc/type_c_port0/wakeup20 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/11f00000.i2c/i2c-7/7-006a/power_supply/sc-cp-master/wakeup23 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/11017000.i2c/i2c-5/5-0062/wakeup/wakeup21 u:object_r:sysfs_wakeup:s0
 
 # USB
 genfscon sysfs /devices/platform/rt-pd-manager/typec/port0                         u:object_r:sysfs_usb_nonplat:s0
@@ -61,3 +66,8 @@ genfscon sysfs /devices/platform/rt-pd-manager/typec/port0                      
 # VM stuff
 genfscon proc /sys/vm/vfs_cache_pressure            u:object_r:proc_drop_caches:s0
 genfscon proc /sys/vm/dirty_ratio                   u:object_r:proc_dirty:s0
+
+genfscon sysfs /devices/platform/soc/soc:hq_chg_manager/power_supply/usb/real_type u:object_r:sysfs_power_supply:s0
+genfscon sysfs /devices/platform/hq_chg_manager/power_supply/battery u:object_r:sysfs_power_supply:s0
+genfscon sysfs /devices/platform/hq_chg_manager/power_supply/usb u:object_r:sysfs_power_supply:s0
+genfscon sysfs /devices/platform/hq_chg_manager/power_supply/charger u:object_r:sysfs_power_supply:s0

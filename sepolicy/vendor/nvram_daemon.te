@@ -1,1 +1,6 @@
 allow nvram_daemon persist_data_file:dir { read search };
+
+get_prop(nvram_daemon, vendor_mtk_service_nvram_first_restore_prop)
+set_prop(nvram_daemon, vendor_mtk_service_nvram_first_restore_prop)
+get_prop(nvram_daemon, vendor_mtk_service_connxo_nvram_file_prop)
+set_prop(nvram_daemon, vendor_mtk_service_connxo_nvram_file_prop)

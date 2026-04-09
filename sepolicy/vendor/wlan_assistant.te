@@ -2,3 +2,5 @@ allow wlan_assistant sysfs_dt_firmware_android:dir { search };
 allow wlan_assistant metadata_file:dir { read open search };
 
 rw_dir_file(wlan_assistant, sysfs_dt_firmware_android)
+
+get_prop(wlan_assistant, vendor_mtk_service_connxo_nvram_file_prop)

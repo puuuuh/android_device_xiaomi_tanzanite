@@ -1,0 +1,4 @@
+ro.product.marketname          u:object_r:build_prop:s0
+ro.mi.os.custfeatureresolve    u:object_r:build_prop:s0
+persist.camera.dualcal.state   u:object_r:build_prop:s0
+ro.mi.os.version.incremental   u:object_r:build_prop:s0

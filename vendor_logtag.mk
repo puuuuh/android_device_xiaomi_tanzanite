@@ -5,6 +5,7 @@ VENDOR_LOG_LEVEL=D
 endif
 
 PRODUCT_VENDOR_PROPERTIES += \
+    persist.log.tag.libc=DEBUG \
     persist.log.tag.RILMUXD=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.RfxMclDisThread=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.RfxCloneMgr=$(VENDOR_LOG_LEVEL) \

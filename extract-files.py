@@ -157,7 +157,7 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/lib/hw/mt6789/mapper.mediatek.so',
         'vendor/lib64/libgpud.so',
         'vendor/lib/libgpud.so',
-        'vendor/bin/hw/android.hardware.graphics.allocator-V2-service-mediatek',
+        'vendor/bin/hw/mt6789/android.hardware.graphics.allocator-V2-service-mediatek.mt6789',
         'vendor/lib64/hw/mt6789/android.hardware.graphics.allocator-V2-mediatek.so',
         'vendor/lib/hw/mt6789/android.hardware.graphics.allocator-V2-mediatek.so',
         'vendor/lib64/vendor.mediatek.hardware.camera.isphal-V1-ndk.so',

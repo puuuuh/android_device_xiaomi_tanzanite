@@ -1,3 +1,4 @@
 allow system_server hal_sensors_default:binder transfer;
 allow system_server vendor_hal_citsensorservice_xiaomi_default:binder transfer;
 allow system_server vendor_hal_citsensorservice_xiaomi_default:binder call;
+allow system_server hal_graphics_allocator_default_tmpfs:file rw_file_perms;

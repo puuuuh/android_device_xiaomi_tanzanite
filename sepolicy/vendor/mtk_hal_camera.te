@@ -1,3 +1,7 @@
+type mtk_hal_postproc_service, service_manager_type;
+
+add_service(mtk_hal_camera, mtk_hal_postproc_service);
+
 r_dir_file(mtk_hal_camera, camera_persist_file)
 r_dir_file(mtk_hal_camera, persist_data_file)
 rw_dir_file(mtk_hal_camera, sysfs_therm)
@@ -5,4 +9,10 @@ rw_dir_file(mtk_hal_camera, sysfs_therm)
 allow mtk_hal_camera vendor_camera_data_file:dir rw_dir_perms;
 allow mtk_hal_camera vendor_camera_data_file:file create_file_perms;
 
-dontaudit mtk_hal_camera default_prop:file { read write };
+allow mtk_hal_camera sysfs_power_supply:file rw_file_perms;
+allow mtk_hal_camera sysfs_power_supply:dir search;
+
+get_prop(mtk_hal_camera, bootloader_prop)
+
+allow mtk_hal_camera system_data_file:dir getattr;
+allow mtk_hal_camera system_data_file:dir search;

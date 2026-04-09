@@ -10,6 +10,7 @@ vendor.display.type               u:object_r:vendor_displayfeature_prop:s0
 # Camera
 vendor.camera.             u:object_r:vendor_mtk_camera_prop:s0
 persist.vendor.camera.     u:object_r:vendor_mtk_camera_prop:s0
+ro.boot.camera.            u:object_r:vendor_mtk_camera_prop:s0
 
 # Fingerprint
 persist.vendor.goodix. u:object_r:vendor_fingerprint_prop:s0
@@ -23,9 +24,18 @@ ro.vendor.oem.sno                        u:object_r:vendor_mtk_radio_prop:s0
 ro.vendor.oem.psno                       u:object_r:vendor_mtk_radio_prop:s0
 ro.vendor.oem.imei                       u:object_r:vendor_mtk_radio_prop:s0
 ro.vendor.oem.meid                       u:object_r:vendor_mtk_radio_prop:s0
+ro.vendor.oem.imei1                      u:object_r:vendor_mtk_radio_prop:s0
+ro.vendor.oem.imei2                      u:object_r:vendor_mtk_radio_prop:s0
+ro.vendor.oem.wifimac                    u:object_r:vendor_mtk_radio_prop:s0
+ro.vendor.oem.btmac                      u:object_r:vendor_mtk_radio_prop:s0
 
 # Sensors
 ro.vendor.sensors.xiaomi.		 u:object_r:vendor_sensors_prop:s0
+persist.vendor.sensors.used.framebuffer u:object_r:vendor_usedframebuffer_prop:s0
 
 # Thermal
 vendor.sys.thermal.data.path             u:object_r:vendor_thermal_prop:s0
+
+# Nvram
+vendor.service.nvram_first_restore       u:object_r:vendor_mtk_service_nvram_first_restore_prop:s0
+vendor.service.connxo_nvram.file         u:object_r:vendor_mtk_service_connxo_nvram_file_prop:s0

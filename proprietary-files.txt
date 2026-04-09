@@ -90,7 +90,7 @@ vendor/lib64/libbluetooth_audio_session.so
 vendor/lib64/libbluetooth_audio_session_aidl.so
 vendor/lib64/libbluetooth_audio_session_aidl_mtk.so
 vendor/lib64/libbluetooth_audio_session_mediatek.so
-vendor/lib64/vendor.mediatek.hardware.audio-V1-ndk.so
+# vendor/lib64/vendor.mediatek.hardware.audio-V1-ndk.so
 vendor/lib64/vendor.mediatek.hardware.audio@6.1.so
 vendor/lib64/vendor.mediatek.hardware.bluetooth.audio-V1-ndk.so
 vendor/lib64/hw/android.hardware.soundtrigger3-impl.so
@@ -1486,7 +1486,7 @@ vendor/etc/mpe.conf
 vendor/etc/slp_conf
 
 # Graphics
-vendor/bin/hw/mt6789/android.hardware.graphics.allocator-V2-service-mediatek.mt6789:vendor/bin/hw/android.hardware.graphics.allocator-V2-service-mediatek
+vendor/bin/hw/mt6789/android.hardware.graphics.allocator-V2-service-mediatek.mt6789;SYMLINK=vendor/bin/hw/android.hardware.graphics.allocator-V2-service-mediatek
 vendor/etc/init/android.hardware.graphics.allocator-V2-service-mediatek.rc
 vendor/etc/vintf/manifest/manifest_allocator.xml
 vendor/etc/vintf/manifest/manifest_hwcomposer.xml
@@ -2009,4 +2009,4 @@ vendor/bin/hw/android.hardware.secure_element@1.2-service-mediatek
 vendor/etc/init/android.hardware.secure_element@1.2-service-mediatek.rc
 
 # Ueventd
-vendor/etc/ueventd.rc:vendor/etc/ueventd.mt6789.rc
+vendor/etc/ueventd.rc:vendor/etc/ueventd.vendor.rc

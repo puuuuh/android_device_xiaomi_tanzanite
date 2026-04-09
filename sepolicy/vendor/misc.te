@@ -1,0 +1,13 @@
+type mtk_hal_audio_service, service_manager_type;
+
+add_service(hal_audio_default, mtk_hal_audio_service);
+
+# PQ
+
+allow mtk_hal_pq vendor_sysfs_displayfeature:dir search;
+allow mtk_hal_pq vendor_sysfs_displayfeature:file rw_file_perms;
+
+allow hal_sensors_default vendor_sysfs_displayfeature:dir search;
+allow hal_sensors_default vendor_sysfs_displayfeature:file rw_file_perms;
+
+allow vendor_hal_citsensorservice_xiaomi_default fwk_sensor_service:service_manager find;

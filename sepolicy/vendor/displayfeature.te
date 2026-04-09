@@ -1,0 +1,4 @@
+allow vendor_displayfeature vendor_sysfs_graphics:dir search;
+allow vendor_displayfeature vendor_sysfs_graphics:file { read write getattr lock append map open watch watch_reads };
+allow vendor_hal_displayfeature_xiaomi_default vendor_sysfs_graphics:dir search;
+allow vendor_hal_displayfeature_xiaomi_default vendor_sysfs_graphics:file { read write getattr lock append map open watch watch_reads };

@@ -23,7 +23,7 @@ $(call inherit-product-if-exists, vendor/private/keys/keys.mk)
 $(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
 
 # Dolby
-$(call inherit-product-if-exists, hardware/dolby/dolby.mk)
+# $(call inherit-product-if-exists, hardware/dolby/dolby.mk)
 
 # Bootanimation
 TARGET_SCREEN_HEIGHT := 1080
@@ -235,7 +235,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SYSTEM_SERVER_DEBUG_INFO := false
 
 PRODUCT_PACKAGES += \
-    android.hardware.sensors-service.multihal
+    android.hardware.sensors-service.multihal:64
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf

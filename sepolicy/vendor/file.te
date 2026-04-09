@@ -3,8 +3,14 @@ type vendor_camera_data_file, data_file_type, file_type;
 type camera_persist_file, file_type;
 
 # Display
+type vendor_displayfeature;
+type vendor_sysfs_displayfeature, fs_type, sysfs_type;
+type vendor_hal_displayfeature_xiaomi_default;
 type vendor_displayfeature_device, dev_type;
-type vendor_displayfeature_sysfs, fs_type, sysfs_type;
+type vendor_hal_displayfeature_xiaomi_default_exec, exec_type, file_type, vendor_file_type;
+type vendor_displayfeature_exec, exec_type, file_type, vendor_file_type;
+
+type touchfeature_device, dev_type;
 
 # Fingerprint
 type vendor_fingerprint_sysfs, sysfs_type, fs_type;
@@ -19,3 +25,10 @@ type vendor_sysfs_thermalconfig, sysfs_type, fs_type;
 
 # Perf
 type proc_vm_dirty, fs_type, proc_type;
+
+type vendor_sysfs_graphics, sysfs_type, fs_type;
+
+type sysfs_touch_hostprocess, sysfs_type, fs_type;
+type sysfs_tp_virtual_prox, sysfs_type, fs_type;
+type sysfs_touch_suspend, sysfs_type, fs_type;
+type sysfs_pen_connect_strategy_node, sysfs_type, fs_type;
