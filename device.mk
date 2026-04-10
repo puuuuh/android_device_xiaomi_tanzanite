@@ -37,7 +37,9 @@ AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS := \
     boot \
     vendor_boot \
+    odm_dlkm \
     system \
+    system_dlkm \
     system_ext \
     vendor \
     vendor_dlkm \
@@ -45,6 +47,7 @@ AB_OTA_PARTITIONS := \
     vbmeta \
     vbmeta_system \
     vbmeta_vendor
+    
 
 PRODUCT_PACKAGES += \
     create_pl_dev \

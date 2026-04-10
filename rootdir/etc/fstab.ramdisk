@@ -182,3 +182,4 @@ system_dlkm /system_dlkm ext4 ro wait,slotselect,avb,logical,first_stage_mount
 
 
 /dev/block/by-name/vbmeta /vbmeta emmc defaults defaults
+
