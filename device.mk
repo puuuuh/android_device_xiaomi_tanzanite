@@ -36,6 +36,7 @@ $(call inherit-product, vendor/mediatek/ims/ims.mk)
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS := \
     boot \
+    dtbo \
     vendor_boot \
     odm_dlkm \
     system \
@@ -47,7 +48,6 @@ AB_OTA_PARTITIONS := \
     vbmeta \
     vbmeta_system \
     vbmeta_vendor
-    
 
 PRODUCT_PACKAGES += \
     create_pl_dev \
