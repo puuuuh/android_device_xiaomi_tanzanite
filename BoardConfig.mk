@@ -42,14 +42,13 @@ TARGET_BOARD_PLATFORM := mt6789
 BOARD_BOOT_HEADER_VERSION := 4
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
 BOARD_KERNEL_SEPARATED_DTBO := true
-BOARD_INCLUDE_DTB_IN_BOOTIMG := false
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 
 # We need this to boot
 BOARD_RAMDISK_USE_LZ4 := true
 BOARD_INCLUDE_RECOVERY_RAMDISK_IN_VENDOR_BOOT := false
 BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
 BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 67108864
-BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 
 BOARD_KERNEL_CMDLINE += bootopt=64S3,32N2,64N2
 BOARD_BOOTCONFIG := androidboot.serialconsole=0
@@ -66,18 +65,23 @@ BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-#BOARD_MKBOOTIMG_ARGS += --ramdisk_type 2
-#BOARD_MKBOOTIMG_ARGS += --ramdisk_name recovery
-#BOARD_MKBOOTIMG_ARGS += --vendor_ramdisk_fragment ${DEVICE_PATH}/empty/original_vendor_ramdisk01.lz4
+
+# Hack for init_boot in vendor_boot, remove if you want to build kernel
+BOARD_MKBOOTIMG_ARGS += --ramdisk_type 2
+BOARD_MKBOOTIMG_ARGS += --ramdisk_name recovery
+BOARD_MKBOOTIMG_ARGS += --vendor_ramdisk_fragment $(DEVICE_PATH)/empty/original_vendor_ramdisk01.lz4
+# End of hack
 
 # Kernel
 # Kill lineage kernel build task while preserving kernel
 TARGET_NO_KERNEL_OVERRIDE := true
 
-LOCAL_KERNEL := $(KERNEL_PATH)/Image.gz
+LOCAL_KERNEL := $(KERNEL_PATH)/Image.lz4
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
+# Boot
+BOARD_PREBUILT_BOOTIMAGE := $(KERNEL_PATH)/boot.img
 # DTB
 BOARD_PREBUILT_DTBOIMAGE := $(KERNEL_PATH)/dtbo.img
 BOARD_PREBUILT_DTBIMAGE_DIR := $(KERNEL_PATH)/dtb
