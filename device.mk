@@ -102,8 +102,11 @@ PRODUCT_PACKAGES += \
     android.hardware.audio@7.1-impl:64 \
     android.hardware.audio.effect@6.0-impl:64 \
     android.hardware.audio.effect@7.0-impl:64 \
+    audio.usb.default:64 \
     audio.bluetooth.default:64 \
-    audio.usb.default:64
+    android.hardware.bluetooth.audio-impl:64 \
+    android.hardware.bluetooth-service.mediatek
+
 
 PRODUCT_PACKAGES += \
     libaudiofoundation.vendor \
@@ -127,7 +130,6 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth-service.mediatek \
     android.hardware.bluetooth.ranging-service.default \
     android.hardware.bluetooth.finder-service.default
 
