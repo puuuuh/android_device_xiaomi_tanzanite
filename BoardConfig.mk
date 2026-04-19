@@ -76,7 +76,7 @@ BOARD_MKBOOTIMG_ARGS += --vendor_ramdisk_fragment $(DEVICE_PATH)/empty/original_
 # Kill lineage kernel build task while preserving kernel
 TARGET_NO_KERNEL_OVERRIDE := true
 
-LOCAL_KERNEL := $(KERNEL_PATH)/Image.lz4
+LOCAL_KERNEL := $(KERNEL_PATH)/Image.gz
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
@@ -86,21 +86,22 @@ BOARD_PREBUILT_BOOTIMAGE := $(KERNEL_PATH)/boot.img
 BOARD_PREBUILT_DTBOIMAGE := $(KERNEL_PATH)/dtbo.img
 BOARD_PREBUILT_DTBIMAGE_DIR := $(KERNEL_PATH)/dtb
 
-# Kernel modules
+# Ramdisk modules
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_PATH)/modules.load.vendor_ramdisk))
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES := $(addprefix $(KERNEL_PATH)/modules/, $(BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD))
-
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES := $(addprefix $(KERNEL_PATH)/vendor_ramdisk_dlkm/, $(BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD))
 # Also add recovery modules to vendor ramdisk
 BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_PATH)/modules.load.recovery))
-RECOVERY_MODULES := $(addprefix $(KERNEL_PATH)/modules/, $(BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD))
-
+RECOVERY_MODULES := $(addprefix $(KERNEL_PATH)/vendor_ramdisk_dlkm/, $(BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD))
 # Prevent duplicated entries (to solve duplicated build rules problem)
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES := $(sort $(BOARD_VENDOR_RAMDISK_KERNEL_MODULES) $(RECOVERY_MODULES))
 
+# Vendor modules (installed to system_dlkm)
+BOARD_SYSTEM_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_PATH)/modules.load.system))
+BOARD_SYSTEM_KERNEL_MODULES := $(addprefix $(KERNEL_PATH)/system_dlkm/, $(BOARD_SYSTEM_KERNEL_MODULES_LOAD))
+
 # Vendor modules (installed to vendor_dlkm)
-BOARD_DO_NOT_STRIP_VENDOR_MODULES := true
 BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_PATH)/modules.load))
-BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(KERNEL_PATH)/modules/*.ko)
+BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(KERNEL_PATH)/vendor_dlkm/*.ko)
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144 # BOARD_KERNEL_PAGESIZE * 64
