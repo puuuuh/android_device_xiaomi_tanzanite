@@ -118,3 +118,5 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.media\.c2-mediatek-64b                    u:object_r:mtk_hal_c2_exec:s0
 /(odm)/bin/hw/android\.hardware\.lights-service\.mediatek                                   u:object_r:mtk_hal_light_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.audio\.effect\.service-aidl\.mediatek     u:object_r:hal_audio_default_exec:s0
+
+/(vendor|system/vendor)/bin/hw/android\.hardware\.health-service                            u:object_r:hal_health_default_exec:s0

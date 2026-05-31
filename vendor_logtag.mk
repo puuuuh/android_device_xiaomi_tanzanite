@@ -1,11 +1,12 @@
 ifeq (eng,$(TARGET_BUILD_VARIANT))
-VENDOR_LOG_LEVEL=D
+VENDOR_LOG_LEVEL=I
 else
-VENDOR_LOG_LEVEL=D
+VENDOR_LOG_LEVEL=E
 endif
 
 PRODUCT_VENDOR_PROPERTIES += \
-    persist.log.tag.libc=DEBUG \
+    persist.log.tag.libc=W \
+    persist.log.tag.hwcomposer=E \
     persist.log.tag.RILMUXD=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.RfxMclDisThread=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.RfxCloneMgr=$(VENDOR_LOG_LEVEL) \
@@ -258,7 +259,6 @@ PRODUCT_VENDOR_PROPERTIES += \
     persist.log.tag.PowerHalMgrServiceImpl=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.PowerHalWifiMonitor=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.gralloc4=$(VENDOR_LOG_LEVEL) \
-    persist.log.tag.hwcomposer=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.HWUI=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.FrameTracker=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.C2MtkBufferManager=$(VENDOR_LOG_LEVEL) \

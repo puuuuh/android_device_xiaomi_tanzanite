@@ -1,0 +1,57 @@
+// Overriding static library
+cc_library_static {
+    name: "libhealth_aidl_impl_tanzanite",
+    defaults: [
+        "libhealth_aidl_common_defaults",
+        "libhealth_aidl_charger_defaults",
+    ],
+    vendor: true,
+    recovery_available: true,
+    export_include_dirs: ["include"],
+    export_static_lib_headers: [
+        "libbatterymonitor",
+    ],
+    srcs: [
+        "ChargerUtils.cpp",
+        "health-convert.cpp",
+        "HalHealthLoop.cpp",
+        "Health.cpp",
+        "LinkedCallback.cpp",
+    ],
+    target: {
+        recovery: {
+            exclude_srcs: [
+                "ChargerUtils.cpp",
+            ],
+        },
+    },
+}
+
+cc_defaults {
+    name: "android.hardware.health-service.defaults",
+    relative_install_path: "hw",
+    vintf_fragments: ["android.hardware.health-service.xml"],
+    defaults: [
+        "libhealth_aidl_impl_user",
+    ],
+    static_libs: [
+        "libhealth_aidl_impl_tanzanite",
+    ],
+    srcs: ["main.cpp"],
+}
+
+cc_binary {
+    name: "android.hardware.health-service",
+    vendor: true,
+    defaults: ["android.hardware.health-service.defaults"],
+    init_rc: ["android.hardware.health-service.rc"],
+    overrides: ["charger"],
+}
+
+cc_binary {
+    name: "android.hardware.health-service.recovery",
+    recovery: true,
+    defaults: ["android.hardware.health-service.defaults"],
+    init_rc: ["android.hardware.health-service.recovery.rc"],
+    overrides: ["charger.recovery"],
+}

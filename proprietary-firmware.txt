@@ -1,4 +1,4 @@
-# Firmware from OS3.0.5
+# Firmware files
 dpm.img;AB
 gz.img;AB
 lk.img;AB

@@ -1188,4 +1188,7 @@ service mi_thermald /system/vendor/bin/mi_thermald
     group system
     seclabel u:r:mi_thermald:s0
 
-
+# Reduce Kernel Printk logging
+# https://github.com/nathanzerogarage/android_device_xiaomi_tanzanite/commit/8182ad8e9117d80d60ab83b625ea332c0452f15c
+on early-init
+    write /proc/sys/kernel/printk "4 4 1 7"

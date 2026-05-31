@@ -49,6 +49,9 @@ vendor/etc/audio_em.xml
 vendor/etc/audio_framework_configuration.xml
 vendor/etc/audio_policy.conf
 vendor/etc/audio_policy_volumes.xml
+vendor/etc/audio_policy_configuration.xml
+vendor/etc/audio_policy_configuration_bluetooth_legacy_hal.xml
+vendor/etc/audio_policy_volumes.xml
 vendor/etc/bluetooth_audio_policy_configuration.xml
 vendor/etc/bluetooth_offload_audio_policy_configuration.xml
 vendor/etc/le_audio_codec_capabilities.xml
@@ -86,6 +89,7 @@ vendor/lib64/libaudiopolicyconfigxml_mtk_vendor.so
 vendor/lib64/libaudioprimarydevicehalifclient.so
 vendor/lib64/libaudiosmartpamtk.so
 vendor/lib64/libaudiotoolkit_vendor.so
+
 vendor/lib64/libbluetooth_audio_session_aidl_mtk.so
 vendor/lib64/libbluetooth_audio_session_mediatek.so
 vendor/lib64/vendor.mediatek.hardware.audio@6.1.so
@@ -94,7 +98,6 @@ vendor/lib64/hw/android.hardware.soundtrigger3-impl.so
 vendor/lib64/hw/sound_trigger.primary.default.so
 vendor/lib64/libmisoundcrossfade.so;FIX_SONAME
 vendor/lib64/libmisound.so
-
 
 # Audio Configurations
 vendor/etc/audio_param/AudioParamOptions_mgvi.xml
@@ -2003,6 +2006,8 @@ vendor/etc/media_codecs_c2.xml
 vendor/etc/media_codecs_dolby_audio.xml
 vendor/etc/media_codecs_performance.xml
 vendor/etc/media_codecs_system_default.xml
+vendor/etc/media_profiles_V1_0.xml
+vendor/etc/mtk_platform_codecs_config.xml
 
 # Secure element
 vendor/bin/hw/android.hardware.secure_element@1.2-service-mediatek
