@@ -1557,6 +1557,20 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+      <name>android.hardware.media.c2</name>
+      <interface>
+          <name>IComponentStore</name>
+          <instance>default9</instance>
+      </interface>
+    </hal>
+    <hal format="aidl">
+	<name>vendor.dolby.dms</name>
+        <interface>
+            <name>IDms</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <sepolicy>
         <kernel-sepolicy-version>30</kernel-sepolicy-version>
         <sepolicy-version>29.0</sepolicy-version>
