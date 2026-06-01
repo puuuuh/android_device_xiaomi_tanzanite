@@ -2007,7 +2007,6 @@ vendor/etc/media_codecs_dolby_audio.xml
 vendor/etc/media_codecs_performance.xml
 vendor/etc/media_codecs_system_default.xml
 vendor/etc/media_profiles_V1_0.xml
-vendor/etc/mtk_platform_codecs_config.xml
 
 # Secure element
 vendor/bin/hw/android.hardware.secure_element@1.2-service-mediatek
@@ -2015,3 +2014,61 @@ vendor/etc/init/android.hardware.secure_element@1.2-service-mediatek.rc
 
 # Ueventd
 vendor/etc/ueventd.rc:vendor/etc/ueventd.vendor.rc
+
+# Dolby
+vendor/bin/hw/vendor.dolby.dms.service
+vendor/bin/hw/vendor.dolby.media.c2-default-service-dax
+vendor/etc/dolby/dax-default.xml
+vendor/etc/init/vendor.dolby.media.c2-default-service-dax.rc
+vendor/etc/init/dms-service.rc
+vendor/etc/vintf/manifest/vendor.dolby.media.c2-default-service-dax.xml
+vendor/etc/vintf/manifest/dms-service.xml
+vendor/lib64/soundfx/libaecsw.so
+vendor/lib64/soundfx/libaecsw_mtk.so
+vendor/lib64/soundfx/libagc1sw.so
+vendor/lib64/soundfx/libagc1sw_mtk.so
+vendor/lib64/soundfx/libagc2sw.so
+vendor/lib64/soundfx/libagc2sw_mtk.so
+vendor/lib64/soundfx/libaudiopreprocessing.so
+vendor/lib64/soundfx/libbassboostsw.so
+vendor/lib64/soundfx/libbundleaidl.so
+vendor/lib64/soundfx/libbundlewrapper.so
+vendor/lib64/soundfx/libdlbvolaidl.so
+vendor/lib64/soundfx/libdownmix.so
+vendor/lib64/soundfx/libdownmixaidl.so
+vendor/lib64/soundfx/libdynamicsprocessingaidl.so
+vendor/lib64/soundfx/libdynproc.so
+vendor/lib64/soundfx/libeffectproxy.so
+vendor/lib64/soundfx/libenvreverbsw.so
+vendor/lib64/soundfx/libequalizersw.so
+vendor/lib64/soundfx/libextensioneffect.so
+vendor/lib64/soundfx/libldnhncr.so
+vendor/lib64/soundfx/libloudnessenhanceraidl.so
+vendor/lib64/soundfx/libmisoundfx_aidl.so
+vendor/lib64/soundfx/libnssw.so
+vendor/lib64/soundfx/libnssw_mtk.so
+vendor/lib64/soundfx/libpreprocessingaidl.so
+vendor/lib64/soundfx/libpreprocessingaidl_mtk.so
+vendor/lib64/soundfx/libpresetreverbsw.so
+vendor/lib64/soundfx/libreverbaidl.so
+vendor/lib64/soundfx/libreverbwrapper.so
+vendor/lib64/soundfx/libspatializer.so
+vendor/lib64/soundfx/libspatializeraidl.so
+vendor/lib64/soundfx/libswdapaidl.so
+vendor/lib64/soundfx/libswgamedapaidl.so
+vendor/lib64/soundfx/libswspatializeraidl.so
+vendor/lib64/soundfx/libvirtualizersw.so
+vendor/lib64/soundfx/libvisualizer.so
+vendor/lib64/soundfx/libvisualizeraidl.so
+vendor/lib64/soundfx/libvolumesw.so
+vendor/lib64/libcodec2_soft_ac4dec.so
+vendor/lib64/libcodec2_soft_ddpdec.so
+vendor/lib64/libdapparamstorage.so
+vendor/lib64/libdeccfg.so
+vendor/lib64/libdlbdsservice.so
+vendor/lib64/libcodec2_store_dolby.so
+vendor/lib64/vendor.dolby.dms-V1-ndk.so
+vendor/lib64/vendor.dolby.hardware.dms@2.0.so
+vendor/lib64/libdmshal.so
+vendor/lib64/libdlbpreg.so
+vendor/lib64/libspatializerparamstorage.so
