@@ -19,6 +19,12 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
+    name: "fstab.enableswap",
+    src: "etc/fstab.enableswap",
+    vendor: true
+}
+
+prebuilt_etc {
     name: "ueventd.mt6789.rc",
     src: "etc/ueventd.mt6789.rc",
     filename: "ueventd.rc",

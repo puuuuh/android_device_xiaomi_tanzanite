@@ -329,6 +329,7 @@ PRODUCT_PACKAGES += \
     init.sensor_2_0.rc \
     init.recovery.usb.rc \
     fstab.mt6789 \
+    fstab.enableswap \
     fstab.mt6789.vendor_ramdisk \
     ueventd.mt6789.rc
 
