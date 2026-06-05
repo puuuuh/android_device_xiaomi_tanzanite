@@ -134,7 +134,7 @@ PRODUCT_PACKAGES += \
     android.hardware.boot-service.default_recovery
 
 # Display
-PRODUCT_PACKAGES += \
+# PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@3.4-service \
     android.hardware.memtrack-service.mediatek-mali \
     android.software.vulkan.deqp.level-2021-03-01.prebuilt.xml \
@@ -195,8 +195,8 @@ PRODUCT_PACKAGES += \
     libeffectsconfig.vendor:64
 
 # Media
-#PRODUCT_COPY_FILES += \
-#    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/media/,$(TARGET_COPY_OUT_VENDOR)/etc)
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/media/,$(TARGET_COPY_OUT_VENDOR)/etc)
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -235,7 +235,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SYSTEM_SERVER_DEBUG_INFO := false
 
 PRODUCT_PACKAGES += \
-    android.hardware.sensors-service.multihal:64
+    android.hardware.sensors-service.multihal:64 \
+    sensors.xiaomi.v2
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf

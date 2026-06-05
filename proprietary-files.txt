@@ -2019,6 +2019,7 @@ vendor/etc/ueventd.rc:vendor/etc/ueventd.vendor.rc
 vendor/bin/hw/vendor.dolby.dms.service
 vendor/bin/hw/vendor.dolby.media.c2-default-service-dax
 vendor/etc/dolby/dax-default.xml
+vendor/etc/dolby/dax-default-spatializer.xml
 vendor/etc/init/vendor.dolby.media.c2-default-service-dax.rc
 vendor/etc/init/dms-service.rc
 vendor/etc/vintf/manifest/vendor.dolby.media.c2-default-service-dax.xml
@@ -2072,3 +2073,8 @@ vendor/lib64/vendor.dolby.hardware.dms@2.0.so
 vendor/lib64/libdmshal.so
 vendor/lib64/libdlbpreg.so
 vendor/lib64/libspatializerparamstorage.so
+system_ext/lib64/libdolbyeffect.so
+system_ext/lib64/libdolbyacse_jni.so
+system_ext/lib64/libacse.so
+
+
