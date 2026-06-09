@@ -8,11 +8,26 @@ vendor/lib64/libaal_sec.so
 
 # APU
 vendor/lib64/libapu_mdw.so
-vendor/lib64/libapu_mdw_batch.so
-vendor/lib64/libapusys.so
+vendor/lib64/vendor.mediatek.hardware.apuware.utils@2.0.so
 vendor/lib64/vendor.mediatek.hardware.apuware.apusys-V5-ndk.so
 vendor/lib64/vendor.mediatek.hardware.apuware.utils-V1-ndk.so
-vendor/lib64/vendor.mediatek.hardware.apuware.utils@2.0.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.aiste-V1-ndk.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.utils@1.0.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.xrp@2.0.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.apusys@2.0.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.xrp-V1-ndk.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.hmp@1.0.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.xrp@1.0.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.apusys@1.0.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.apusys@2.1.so
+system_ext/lib64/libapuwareutils_v2.mtk.so
+system_ext/lib64/libapuwarexrp_v2.mtk.so
+system_ext/lib64/libapuwareapusys_v2.mtk.so
+system_ext/lib64/libapuwarexrp.mtk.so
+system_ext/lib64/libapuwareutils.mtk.so
+system_ext/lib64/libapuwareapusys.mtk.so
+system_ext/lib64/libapuwareaiste.mtk.so
+system_ext/lib64/libapuwarehmp.mtk.so
 
 # Audio
 vendor/lib64/libMtkSpeechEnh.so
@@ -1571,8 +1586,27 @@ vendor/etc/permissions/android.hardware.hardware_keystore.xml:vendor/etc/permiss
 vendor/etc/vintf/manifest/android.hardware.security.secureclock-service.mitee.xml
 vendor/etc/vintf/manifest/android.hardware.security.sharedsecret-service.mitee.xml
 
+# Media (Codec2)
+vendor/etc/VideoLog_dynamic.ds
+vendor/lib64/libcodec2_fsr.so
+vendor/lib64/libcodec2_mtk_c2store.so
+vendor/lib64/libcodec2_mtk_vdec.so
+vendor/lib64/libcodec2_mtk_venc.so
+vendor/lib64/libcodec2_vpp_AIMEMC_plugin.so
+vendor/lib64/libcodec2_vpp_AISR_plugin.so
+vendor/lib64/libcodec2_vpp_fa_plugin.so
+vendor/lib64/libcodec2_vpp_mi_plugin.so
+vendor/lib64/libcodec2_vpp_qt_plugin.so
+vendor/lib64/libcodec2_vpp_rs_plugin.so
+vendor/lib64/libcodec2_vpp_ft_plugin.so
+vendor/lib64/libcodec2_vpp_roi_plugin.so
+vendor/lib64/libcodec2_vpp_chdr_plugin.so
+vendor/lib64/libcodec2_soft_ac4dec.so
+vendor/lib64/libcodec2_soft_ddpdec.so
+vendor/lib64/libformatter.so
+
 # Media (Common)
-vendor/bin/mt6789/v3avpud-64b.mt6789:vendor/bin/v3avpud
+vendor/bin/mt6789/v3avpud-64b.mt6789:vendor/bin/mt6789/v3avpud.mt6789;SYMLINK=vendor/bin/v3avpud
 vendor/etc/init/v3avpud-64b.rc
 vendor/etc/VideoLog_dynamic.ds
 vendor/lib64/mt6789/libvcodecdrv_v3a.so
@@ -1582,39 +1616,76 @@ vendor/lib64/AVCSecureVdecCA.so
 vendor/lib64/HEVCSecureVdecCA.so
 vendor/lib64/VP9SecureVdecCA.so
 vendor/lib64/libAVCSecureVencCA.so
-vendor/lib64/libbwc.so
-vendor/lib64/libcodec2_mtk_c2store.so
-vendor/lib64/libcodec2_mtk_vdec.so
-vendor/lib64/libcodec2_mtk_venc.so
-vendor/lib64/libcodec2_fsr.so
-vendor/lib64/libcodec2_vpp_roi_plugin.so
-vendor/lib64/libcodec2_vpp_ft_plugin.so
-vendor/lib64/libcodec2_vpp_fa_plugin.so
-vendor/lib64/libcodec2_vpp_qt_plugin.so
-vendor/lib64/libcodec2_vpp_rs_plugin.so
-vendor/lib64/libcodec2_vpp_mi_plugin.so
-vendor/lib64/libcodec2_vpp_chdr_plugin.so
-vendor/lib64/libformatter.so
-vendor/lib64/libmvpu_cic_ci_compiler.so
-vendor/lib64/libmvpu_clc_14_mvpu_elf_25.so
-vendor/lib64/libmvpu_clc_30_mvpu_debuginfo.so
-vendor/lib64/libmvpu_clc_30_mvpu_elf.so
-vendor/lib64/libmvpu_clc_30_mvpu_utility.so
-vendor/lib64/libmvpu_clc_mvpu_elf.so
-vendor/lib64/libmvpu_config.so
-vendor/lib64/libmvpu_engine.so
-vendor/lib64/libmvpu_engine_pub.so
-vendor/lib64/libmvpu_pattern.so
-vendor/lib64/libmvpu_pattern_pub.so
-vendor/lib64/libmvpu_runtime.so
-vendor/lib64/libmvpu_runtime_builtin.so
-vendor/lib64/libmvpu_runtime_pub.so
-system_ext/lib64/libmvpuop_mtk_cv.mtk.so:vendor/lib64/libmvpuop_mtk_cv.mtk.so
-vendor/lib64/libvcodec_oal.so;DISABLE_CHECKELF
-vendor/lib64/libvcodecdrv_header_stub.so
-vendor/lib64/libvpu.so
-vendor/lib64/libvpu5.so
 vendor/lib64/mt6789/libvcodec_utility_v3a.so
+
+# VPU
+vendor/lib64/libmvpu_runtime_builtin_25.so
+vendor/lib64/libmvpu_runtime_pub.so
+vendor/lib64/libmvpu_engine_25_pub.so
+vendor/lib64/libmvpu_cic_ci_compiler.so
+vendor/lib64/libmvpu_engine_pub.so
+vendor/lib64/libmvpu_pattern_25.so
+vendor/lib64/libmvpu_engine_25.so
+vendor/lib64/libmvpu_cic_ci_compiler_25.so
+vendor/lib64/libmvpu_cic_ci_compiler_30.so
+vendor/lib64/libmvpu_runtime.so
+vendor/lib64/libmvpu_runtime_25.so
+vendor/lib64/libmvpu_clc_30_mvpu_utility.so
+vendor/lib64/libmvpu_pattern.so
+vendor/lib64/libmvpu_clc_14_mvpu_elf_25.so
+vendor/lib64/libmvpu_runtime_builtin.so
+vendor/lib64/libmvpu_engine_30.so
+vendor/lib64/libmvpu_config.so
+vendor/lib64/libmvpu_pattern_30.so
+vendor/lib64/libmvpu_runtime_25_pub.so
+vendor/lib64/libmvpu_clc_30_mvpu_elf.so
+vendor/lib64/libmvpu_clc_30_mvpu_debuginfo.so
+vendor/lib64/libmvpu_engine.so
+vendor/lib64/libmvpu_pattern_pub.so
+vendor/lib64/libmvpu_wrapper.so
+vendor/lib64/libmvpu_clc_mvpu_elf.so
+vendor/lib64/libmvpu_runtime_30.so
+vendor/lib64/libmvpu_config_data.so
+vendor/lib64/libmvpu_pattern_25_pub.so
+system_ext/lib64/libmvpu_engine_25_pub.mtk.so
+system_ext/lib64/libmvpuop30_mtk_nn.mtk.so
+system_ext/lib64/libmvpu_clc_30_mvpu_elf.mtk.so
+system_ext/lib64/libmvpuop_mtk_nn.mtk.so
+system_ext/lib64/libmvpu_config.mtk.so
+system_ext/lib64/libmvpuop25_mtk_nn.mtk.so
+system_ext/lib64/libmvpu_runtime_pub.mtk.so
+system_ext/lib64/libmvpu_pattern_25_pub.mtk.so
+system_ext/lib64/libmvpu_engine_30.mtk.so
+system_ext/lib64/libmvpu_runtime_builtin_25.mtk.so
+system_ext/lib64/libmvpuop25_mtk_cv.mtk.so
+system_ext/lib64/libmvpu_runtime_25_pub.mtk.so
+system_ext/lib64/libmvpu_clc_14_mvpu_utility_25.mtk.so
+system_ext/lib64/libmvpu_engine.mtk.so
+system_ext/lib64/libmvpu_runtime.mtk.so
+system_ext/lib64/libmvpu_engine_25.mtk.so
+system_ext/lib64/libmvpu_cic_ci_compiler.mtk.so
+system_ext/lib64/libmvpu_runtime_30.mtk.so
+system_ext/lib64/libmvpu_runtime_builtin.mtk.so
+system_ext/lib64/libmvpu_pattern_25.mtk.so
+system_ext/lib64/libmvpu_clc_mvpu_debuginfo.mtk.so
+system_ext/lib64/libmvpu_engine_pub.mtk.so
+system_ext/lib64/libmvpu_clc_mvpu_elf.mtk.so
+system_ext/lib64/libmvpu_pattern_pub.mtk.so
+system_ext/lib64/libmvpuop_mtk_cv.mtk.so
+system_ext/lib64/libmvpu_pattern_30.mtk.so
+system_ext/lib64/libmvpu_clc_14_mvpu_debuginfo_25.mtk.so
+system_ext/lib64/libmvpu_runtime_25.mtk.so
+system_ext/lib64/libmvpu_clc_30_mvpu_utility.mtk.so
+system_ext/lib64/libmvpu_cic_ci_compiler_30.mtk.so
+system_ext/lib64/libmvpu_clc_30_mvpu_debuginfo.mtk.so
+system_ext/lib64/libmvpu_clc_mvpu_utility.mtk.so
+system_ext/lib64/libmvpu_clc_14_mvpu_elf_25.mtk.so
+system_ext/lib64/libmvpu_pattern.mtk.so
+system_ext/lib64/libmvpu_cic_ci_compiler_25.mtk.so
+vendor/lib64/libvpu5.so
+vendor/lib64/libbwc.so
+vendor/lib64/libvcodec_oal.so
+vendor/lib64/libvcodecdrv_header_stub.so
 
 # MMAgent
 vendor/bin/hw/vendor.mediatek.hardware.mmagent-service
@@ -2001,12 +2072,6 @@ vendor/lib64/libmtkgpuserv.so
 vendor/lib64/libmtkgpuservsdk_vendor.so
 vendor/lib64/vendor.mediatek.hardware.gpuserv-V2-ndk.so
 
-vendor/etc/media_codecs.xml
-vendor/etc/media_codecs_c2.xml
-vendor/etc/media_codecs_dolby_audio.xml
-vendor/etc/media_codecs_performance.xml
-vendor/etc/media_codecs_system_default.xml
-vendor/etc/media_profiles_V1_0.xml
 
 # Secure element
 vendor/bin/hw/android.hardware.secure_element@1.2-service-mediatek
@@ -2062,8 +2127,6 @@ vendor/lib64/soundfx/libvirtualizersw.so
 vendor/lib64/soundfx/libvisualizer.so
 vendor/lib64/soundfx/libvisualizeraidl.so
 vendor/lib64/soundfx/libvolumesw.so
-vendor/lib64/libcodec2_soft_ac4dec.so
-vendor/lib64/libcodec2_soft_ddpdec.so
 vendor/lib64/libdapparamstorage.so
 vendor/lib64/libdeccfg.so
 vendor/lib64/libdlbdsservice.so
@@ -2076,5 +2139,3 @@ vendor/lib64/libspatializerparamstorage.so
 system_ext/lib64/libdolbyeffect.so
 system_ext/lib64/libdolbyacse_jni.so
 system_ext/lib64/libacse.so
-
-

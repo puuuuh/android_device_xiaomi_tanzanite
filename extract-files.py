@@ -151,12 +151,14 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/lib64/vendor.mediatek.hardware.pq_aidl-V7-ndk.so',
         'vendor/lib64/mt6789/libmtkcam_grallocutils.so',
         'vendor/lib64/hw/hwcomposer.mtk_common.so',
-        'vendor/lib64/libcodec2_fsr.so',
         'vendor/lib64/hw/mt6789/android.hardware.graphics.allocator-V2-mediatek.so',
         'vendor/lib64/hw/mt6789/mapper.mediatek.so',
         'vendor/lib/hw/mt6789/mapper.mediatek.so',
         'vendor/lib64/libgpud.so',
         'vendor/lib/libgpud.so',
+        'vendor/lib64/libcodec2_fsr.so',
+        'vendor/lib64/libcodec2_vpp_AIMEMC_plugin.so',
+        'vendor/lib64/libcodec2_vpp_AISR_plugin.so',
         'vendor/bin/hw/mt6789/android.hardware.graphics.allocator-V2-service-mediatek.mt6789',
         'vendor/lib64/hw/mt6789/android.hardware.graphics.allocator-V2-mediatek.so',
         'vendor/lib/hw/mt6789/android.hardware.graphics.allocator-V2-mediatek.so',
@@ -173,7 +175,9 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('android.media.audio.common.types-V3-ndk.so', 'android.media.audio.common.types-V4-ndk.so'),
 
     'vendor/bin/hw/android.hardware.wifi-service-lazy': blob_fixup()
-        .replace_needed('android.hardware.wifi-V3-ndk.so', 'android.hardware.wifi-V4-ndk.so')
+        .replace_needed('android.hardware.wifi-V3-ndk.so', 'android.hardware.wifi-V4-ndk.so'),
+    'vendor/etc/init/v3avpud-64b.rc': blob_fixup()
+        .regex_replace('v3avpud-64b', 'v3avpud'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(

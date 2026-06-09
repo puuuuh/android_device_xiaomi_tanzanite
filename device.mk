@@ -19,6 +19,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/userspace_reboot.mk)
 # Keys
 $(call inherit-product-if-exists, vendor/private/keys/keys.mk)
 
+# Dolby
+# $(call inherit-product, hardware/dolby/dolby.mk)
+
 # Bootanimation
 TARGET_SCREEN_HEIGHT := 1080
 TARGET_SCREEN_WIDTH := 2400
@@ -111,7 +114,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     MtkInCallService \
-    XiaomiDolby
+    DolbyAtmos
 
 # Audio Configuration
 #PRODUCT_COPY_FILES += \
@@ -187,10 +190,9 @@ PRODUCT_PACKAGES += \
     android.hardware.light-service.lineage
 
 # Media (C2)
-$(call soong_config_set_bool,android_hardware_mediatek_codec2,link_v33_libstagefright_foundation,true)
+# $(call soong_config_set_bool,android_hardware_mediatek_codec2,link_v33_libstagefright_foundation,false)
 PRODUCT_PACKAGES += \
     android.hardware.media.c2-mtk-service \
-    libcodec2_soft_common.vendor:64 \
     libeffects:64 \
     libeffectsconfig.vendor:64
 
