@@ -357,8 +357,10 @@ vendor/etc/default_volume_tables.xml
 
 # Batterysecret
 vendor/bin/batterysecret
+vendor/etc/init/init.batterysecret.rc
 
 # Bluetooth
+vendor/etc/init/init.bt_drv.rc
 vendor/lib64/libbluetooth_mtk.so
 vendor/lib64/libbluetooth_mtk_pure.so
 vendor/lib64/libbt-vendor.so
@@ -1385,7 +1387,21 @@ vendor/etc/camera/singlebokeh_mecp.bin
 # ConsumerIR
 vendor/lib64/hw/consumerir.common.so:vendor/lib64/hw/consumerir.mt6789.so;FIX_SONAME
 
+# TEST
+#vendor/etc/init/init.frs.rc
+
+# DMC Core
+vendor/etc/init/dmc_core.rc
+vendor/bin/dmc_core
+vendor/lib64/libtranslator_utils.so
+vendor/lib64/libicd_decoder.so
+vendor/lib64/vendor.mediatek.hardware.mdmonitor@1.0.so
+vendor/lib64/vendor.mediatek.hardware.mdmonitor-V1-ndk.so
+vendor/lib64/vendor.mediatek.hardware.dmc-V1-ndk.so
+vendor/lib64/vendor.mediatek.hardware.apmonitor-V1-ndk.so
+
 # Display configs
+vendor/etc/init/display.rc
 vendor/etc/AbnormalDisplayLog_dynamic.ds
 vendor/etc/cust_color_dsi_o7_38_0c_0a_dsc_vdo.xml
 vendor/etc/dsi_o7_38_0c_0a_dsc_vdo_mi.xml
@@ -1461,24 +1477,34 @@ vendor/etc/vintf/manifest/android.hardware.gatekeeper-service.mitee.xml
 # GNSS
 vendor/bin/hw/android.hardware.gnss-service.mediatek
 vendor/bin/hw/vendor.mediatek.hardware.gnss-service
+vendor/bin/mnld
+vendor/bin/mtk_agpsd
+
 vendor/etc/init/android.hardware.gnss-service.mediatek.rc
 vendor/etc/init/mtk_gnss.rc
+vendor/etc/init/mtk_agpsd_p.rc
+vendor/etc/init/init.vendor.ins.rc
+vendor/etc/init/init.gps_drv.rc
+vendor/etc/init/mtk_agpsd_p.rc
+
 vendor/etc/vintf/manifest/gnss-mtk.xml
+vendor/etc/vintf/manifest/gnss-default.xml:vendor/etc/vintf/manifest/gnss-default-mtk.xml
 vendor/etc/vintf/manifest/mtkgnss-batching.xml
+
 vendor/lib64/hw/android.hardware.gnss-impl-mediatek.so
 vendor/lib64/hw/vendor.mediatek.hardware.gnss-impl.so
 vendor/lib64/hw/vendor.mediatek.hardware.gnss.batching-impl.so
 vendor/lib64/vendor.mediatek.hardware.gnss-V3-ndk.so
 vendor/lib64/vendor.mediatek.hardware.gnss.batching-V1-ndk.so
-vendor/bin/mnld
-vendor/bin/mtk_agpsd
-vendor/etc/init/init.gps_drv.rc
-vendor/etc/init/mtk_agpsd_p.rc
 vendor/lib64/hw/gps.default.so
 vendor/lib64/mt6789/libDR.so
 vendor/lib64/mt6789/libmnl.so
 vendor/lib64/vendor.mediatek.hardware.lbs-V1-ndk.so
 vendor/lib64/vendor.mediatek.hardware.lbs@1.0.so
+vendor/lib64/hw/mtkgeofence.default.so
+vendor/lib64/hw/mtkflp.default.so
+vendor/lib64/mtk_lbs_service-impl.so
+
 
 # GNSS (Configs)
 vendor/etc/gnss/carrier/agps_profiles_conf2_carrier_ATnT_Mexico.xml
@@ -1578,6 +1604,10 @@ vendor/lib64/libeyecare.so
 vendor/lib64/libmiXmlParser.so
 vendor/lib64/libtruetone.so
 
+# Boardid
+vendor/etc/init/boardid.rc
+vendor/bin/boardid_bin
+
 # Keymint
 vendor/bin/hw/android.hardware.security.keymint@4.0-service.mitee
 vendor/etc/init/android.hardware.security.keymint.mitee@4.0-service.rc
@@ -1604,6 +1634,10 @@ vendor/lib64/libcodec2_vpp_chdr_plugin.so
 vendor/lib64/libcodec2_soft_ac4dec.so
 vendor/lib64/libcodec2_soft_ddpdec.so
 vendor/lib64/libformatter.so
+
+# Chipinfo
+vendor/bin/chipinfo
+vendor/etc/init/chipinfo_init.rc
 
 # Media (Common)
 vendor/bin/mt6789/v3avpud-64b.mt6789:vendor/bin/mt6789/v3avpud.mt6789;SYMLINK=vendor/bin/v3avpud
@@ -1739,6 +1773,7 @@ vendor/lib64/vendor.mediatek.hardware.neuropilot.neuronservice-V1-ndk.so
 odm/etc/init/tanzanite_e_eea/nfc2-service-nxp.rc:vendor/etc/init/tanzanite_e_eea/nfc2-service-nxp.rc
 odm/etc/init/tanzanite_n_gl/nfc2-service-nxp.rc:vendor/etc/init/tanzanite_n_gl/nfc2-service-nxp.rc
 odm/etc/vintf/manifest_tanzanite_e_eea.xml:vendor/etc/vintf/nfc_manifest.xml
+vendor/etc/init/init.miodm_tanzanite.nfc.rc
 vendor/etc/libnfc-nci.conf
 vendor/etc/libnfc-nxp.conf
 vendor/lib64/libnxp_extamp_intf.so
@@ -1746,12 +1781,15 @@ vendor/lib64/libpn560_fw.so
 vendor/libnfc-nxp_RF.conf
 
 # NVRAM
-vendor/bin/fuelgauged_nvram
 vendor/bin/hw/vendor.mediatek.hardware.nvram-service
+vendor/bin/fuelgauged
+vendor/bin/fuelgauged_nvram
 vendor/bin/nvram_daemon
+vendor/etc/init/fuelgauged_init.rc
 vendor/etc/init/fuelgauged_nvram_init.rc
 vendor/etc/init/nvram_daemon.rc
 vendor/etc/init/vendor.mediatek.hardware.nvram-sevice.rc
+vendor/etc/init/init.connfem.rc
 vendor/lib64/hw/vendor.mediatek.hardware.nvram-impl.so
 vendor/lib64/libcustom_nvram.so
 vendor/lib64/libnvram.so
@@ -1759,8 +1797,6 @@ vendor/lib64/libnvram_sec.so
 vendor/lib64/libwifinvram.so
 vendor/lib64/libwifinvramdata.so
 vendor/lib64/vendor.mediatek.hardware.nvram-V1-ndk.so
-vendor/bin/fuelgauged
-vendor/etc/init/fuelgauged_init.rc
 vendor/lib64/libconnfem.so
 vendor/lib64/libfgauge_gm30.so
 vendor/lib64/libfile_op.so
@@ -1802,17 +1838,32 @@ vendor/lib64/vendor.mediatek.hardware.pq@2.9.so
 vendor/lib64/vendor.mediatek.hardware.pq_aidl-V3-ndk.so
 vendor/lib64/vendor.mediatek.hardware.pq_aidl-V7-ndk.so
 
+# VoWifi
+vendor/bin/wfca
+vendor/etc/init/init.wfca.rc
+
 # Radio
 vendor/bin/hw/mtkfusionrild
 vendor/bin/ccci_mdinit
 vendor/bin/ccci_rpcd
 vendor/bin/gsm0710muxd
 vendor/bin/ipsec_mon
+vendor/bin/epdg_wod
+vendor/bin/xcap
+
+vendor/lib64/libcurl-md.so
+vendor/lib64/libssl-md.so
+vendor/lib64/libcrypto-md.so
+vendor/lib64/libwo.so
+
 vendor/etc/init/gsm0710muxd.rc
 vendor/etc/init/init.cccimdinit.rc
 vendor/etc/init/init.cccirpcd.rc
+vendor/etc/init/init.md_apps.rc
+vendor/etc/init/init.wod.rc
 vendor/etc/init/ipsec_mon.rc
 vendor/etc/init/mtkrild.rc
+vendor/etc/init/init.xcap.rc
 
 vendor/lib/libverno.so
 vendor/lib/libipsec_ims_shr.so
@@ -1940,6 +1991,7 @@ vendor/lib64/hw/sensors.elliptic.so;FIX_SONAME
 vendor/lib64/hw/sensors.mediatek.V2.0.so;SYMLINK=vendor/lib64/hw/sensors.mt6789.so
 
 # Sensors (CIT)
+vendor/etc/init/init.cit.rc
 vendor/bin/hw/vendor.xiaomi.sensor.citsensorservice.aidl
 vendor/etc/init/vendor.xiaomi.sensor.citsensorservice.aidl.rc
 vendor/etc/vintf/manifest/vendor.xiaomi.sensor.citsensorservice.aidl.xml
