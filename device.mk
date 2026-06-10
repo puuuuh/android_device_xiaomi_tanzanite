@@ -137,11 +137,22 @@ PRODUCT_PACKAGES += \
     android.hardware.boot-service.default_recovery
 
 # Display
+PRODUCT_PACKAGES += \
+    android.hardware.memtrack-service.mediatek-mali \
+    android.frameworks.displayservice@1.0 \
+    android.hardware.atrace@1.0-service \
+    android.hardware.media.omx@1.0 \
+    android.hardware.oemlock@1.0.vendor:64 \
+    android.hardware.authsecret@1.0-service \
+    android.system.suspend-service \
+    android.hardware.ir-service.lineage
 # PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@3.4-service \
-    android.hardware.memtrack-service.mediatek-mali \
     android.software.vulkan.deqp.level-2021-03-01.prebuilt.xml \
     android.software.opengles.deqp.level-2021-03-01.prebuilt.xml
+
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@4.0
 
 PRODUCT_PACKAGES += \
     MinRefreshRateCtrl
@@ -339,10 +350,6 @@ PRODUCT_PACKAGES += \
 # GNSS
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.location.gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.location.gps.xml
-
-# ConsumerIR
-PRODUCT_PACKAGES += \
-    android.hardware.ir-service.example
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.consumerir.xml
