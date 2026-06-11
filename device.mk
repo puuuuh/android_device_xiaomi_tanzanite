@@ -113,7 +113,6 @@ PRODUCT_PACKAGES += \
     libdynproc
 
 PRODUCT_PACKAGES += \
-    MtkInCallService \
     DolbyAtmos
 
 # Audio Configuration
