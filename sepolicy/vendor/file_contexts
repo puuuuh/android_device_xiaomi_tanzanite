@@ -19,6 +19,7 @@
 
 # NFC
 /dev/nxp-nci                                                                                            u:object_r:nfc_device:s0
+/dev/nq-nci                                                                                             u:object_r:nfc_device:s0
 
 # Power
 /(vendor|system/vendor)/bin/hw/android\.hardware\.power-service\.pixel-libperfmgr u:object_r:hal_power_default_exec:s0
