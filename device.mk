@@ -144,7 +144,7 @@ PRODUCT_PACKAGES += \
     android.hardware.oemlock@1.0.vendor:64 \
     android.hardware.authsecret@1.0-service \
     android.system.suspend-service \
-    android.hardware.ir-service.lineage
+    android.hardware.ir-service.example
 # PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@3.4-service \
     android.software.vulkan.deqp.level-2021-03-01.prebuilt.xml \
