@@ -29,6 +29,11 @@ TARGET_SCREEN_WIDTH := 2400
 # Inherit common MediaTek IMS
 $(call inherit-product, vendor/mediatek/ims/ims.mk)
 
+# GMS
+WITH_GMS := true
+TARGET_USES_PICO_GAPPS := true
+TARGET_ENABLE_BLUR := false
+
 # AB OTA Configuration
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS := \
@@ -73,15 +78,15 @@ AB_OTA_POSTINSTALL_CONFIG += \
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Compressed Virtual A/B
-ifneq ($(WITH_GMS),true)
+#ifneq ($(WITH_GMS),true)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
 TARGET_RO_FILE_SYSTEM_TYPE := ext4
-else
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/vabc_features.mk)
-PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
-TARGET_RO_FILE_SYSTEM_TYPE := erofs
-PRODUCT_VENDOR_PROPERTIES += ro.virtual_ab.compression.threads=true
-endif
+#else
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/vabc_features.mk)
+#PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
+#TARGET_RO_FILE_SYSTEM_TYPE := erofs
+#PRODUCT_VENDOR_PROPERTIES += ro.virtual_ab.compression.threads=true
+#endif
 
 
 # Boot control (A/B Updates)
@@ -112,8 +117,8 @@ PRODUCT_PACKAGES += \
     libtinycompress \
     libdynproc
 
-PRODUCT_PACKAGES += \
-    DolbyAtmos
+#PRODUCT_PACKAGES += \
+#    DolbyAtmos
 
 # Audio Configuration
 #PRODUCT_COPY_FILES += \
@@ -259,7 +264,8 @@ PRODUCT_PACKAGES += \
 
 # Thermal
 PRODUCT_PACKAGES += \
-    android.hardware.thermal-service.mediatek
+    android.hardware.thermal-service.pixel \
+    thermal_symlinks
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
