@@ -121,8 +121,8 @@ PRODUCT_PACKAGES += \
 #    DolbyAtmos
 
 # Audio Configuration
-#PRODUCT_COPY_FILES += \
-#    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/audio/,$(TARGET_COPY_OUT_VENDOR)/etc)
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/audio/,$(TARGET_COPY_OUT_VENDOR)/etc)
 
 #PRODUCT_COPY_FILES += \
 #    frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml \
@@ -157,9 +157,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.0
-
-PRODUCT_PACKAGES += \
-    MinRefreshRateCtrl
 
 # DRM (Clearkey)
 PRODUCT_PACKAGES += \
@@ -363,11 +360,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     ApertureOverlayTanzanite \
     FrameworksResOverlayTanzanite \
+    TetheringResOverlayTanzanite \
+    WifiResOverlayTanzanite \
     SettingsResOverlayTanzanite \
     SettingsProviderResOverlayTanzanite \
     SystemUIOverlayTanzanite \
-    TetheringResOverlayTanzanite \
-    WifiResOverlayTanzanite
 
 # Properties
 include $(LOCAL_PATH)/vendor_logtag.mk
