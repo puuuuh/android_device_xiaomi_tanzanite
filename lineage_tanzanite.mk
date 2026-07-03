@@ -14,6 +14,9 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 # Inherit from tanzanite device
 $(call inherit-product, device/xiaomi/tanzanite/device.mk)
 
+DERPFEST_BUILD_TYPE := Unofficial
+DERPFEST_BUILD_VARIANT := Beta
+
 PRODUCT_DEVICE := tanzanite
 PRODUCT_NAME := lineage_tanzanite
 PRODUCT_BRAND := Redmi
