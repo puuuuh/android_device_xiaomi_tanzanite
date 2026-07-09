@@ -17,10 +17,6 @@
 /(vendor|system/vendor)/bin/hw/android.hardware.security.keymint@1.0-service.mitee                     u:object_r:hal_keymint_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.security\.keymint@4\.0-service\.mitee                u:object_r:hal_keymint_default_exec:s0
 
-# NFC
-/dev/nxp-nci                                                                                            u:object_r:nfc_device:s0
-/dev/nq-nci                                                                                             u:object_r:nfc_device:s0
-
 # Power
 /(vendor|system/vendor)/bin/hw/android\.hardware\.power-service\.pixel-libperfmgr u:object_r:hal_power_default_exec:s0
 
@@ -38,22 +34,8 @@
 /dev/xiaomi-touch u:object_r:touchfeature_device:s0
 
 # Trusted Execution Environment (TEE)
-/(vendor|system/vendor)/bin/tee-supplicant                                                             u:object_r:tee_exec:s0
-/(vendor|system/vendor)/bin/miteelog                                                                   u:object_r:tee_exec:s0
-/dev/0:0:0:49476                                                                                       u:object_r:teei_rpmb_device:s0
-/dev/tee0                                                                                              u:object_r:mitee_client_device:s0
-/dev/teepriv0                                                                                          u:object_r:mitee_client_device:s0
-/dev/ufs-bsg0                                                                                          u:object_r:mitee_client_device:s0
-
-/mnt/vendor/persist/data(/.*)?                                                                         u:object_r:mitee_data_file:s0
-/data/vendor/mitee(/.*)?                                                                               u:object_r:mitee_data_file:s0
 /data/vendor/mitee/mitee.log                                                                           u:object_r:mitee_data_file:s0
 /data/vendor/mitee/last_mitee.log                                                                      u:object_r:mitee_data_file:s0
-
-# Sound
-/dev/socket/audio_hw_socket                                                                            u:object_r:audio_socket:s0
-
-/(vendor|system/vendor)/bin/hw/android\.hardware\.audio\.service-aidl\.mediatek                        u:object_r:hal_audio_default_exec:s0
 
 # Gatekeeper
 /(vendor|system\/vendor)/bin/hw/android\.hardware\.gatekeeper-service\.mitee                           u:object_r:hal_gatekeeper_default_exec:s0
@@ -84,14 +66,10 @@
 /vendor/lib(64)?/mt[0-9]+\/libmtk_mali_user\.so                                                        u:object_r:same_process_hal_file:s0
 
 
-/vendor/lib(64)?/vendor\.mediatek\.hardware\.mms-V[0-9]+-ndk\.so                                       u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/libaedv.so                                                                            u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/libpq_sec\.so                                                                         u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/mt[0-9]+[a-z]*/libpq_sec\.so                                                          u:object_r:same_process_hal_file:s0
 
-/vendor/lib(64)?/mt[0-9]+[a-z]*/libmml\.so                                                             u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/libmml\.so                                                                            u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/libsdrparser\.so                                 u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/vendor\.mediatek\.hardware\.graphics-V[0-9]+-ndk\.so u:object_r:same_process_hal_file:s0
 
 /sys/devices/virtual/touch/touch_dev/touch_thp_(.*)         u:object_r:sysfs_touch_hostprocess:s0
@@ -117,11 +95,13 @@
 
 # https://github.com/Digimend-X-Rodin/android_device_mediatek_sepolicy_vndr/commit/3215ab9f1f46d5870a04b43ad15f43f8b1341c0a
 /(vendor|system/vendor)/bin/hw/android\.hardware\.media\.c2-mtk-service                     u:object_r:mtk_hal_c2_exec:s0
-/(vendor|system/vendor)/bin/hw/android\.hardware\.media\.c2-mediatek-64b                    u:object_r:mtk_hal_c2_exec:s0
 /(odm)/bin/hw/android\.hardware\.lights-service\.mediatek                                   u:object_r:mtk_hal_light_exec:s0
-/(vendor|system/vendor)/bin/hw/android\.hardware\.audio\.effect\.service-aidl\.mediatek     u:object_r:hal_audio_default_exec:s0
 
 /(vendor|system/vendor)/bin/hw/android\.hardware\.health-service                            u:object_r:hal_health_default_exec:s0
-# dolby
+
+# Dolby
 /vendor/bin/hw/vendor\.dolby\.dms\.service                                                  u:object_r:hal_aidl_dms_default_exec:s0
 /vendor/bin/hw/vendor\.dolby\.media\.c2-default-service-dax                                 u:object_r:mediacodec_exec:s0
+
+# Audio
+/dev/socket/audio_hw_socket u:object_r:audio_socket:s0

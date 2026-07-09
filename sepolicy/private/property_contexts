@@ -1,1 +1,5 @@
 ro.mi.os.custfeatureresolve         u:object_r:mi_os_custfeatureresolve_prop:s0
+
+# Dolby Properties
+ro.vendor.audio.device.dbcom	u:object_r:exported_system_prop:s0
+ro.vendor.audio.spatilizer.enabled	u:object_r:exported_system_prop:s0

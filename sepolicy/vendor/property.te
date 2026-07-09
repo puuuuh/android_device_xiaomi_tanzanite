@@ -10,3 +10,5 @@ vendor_restricted_prop(vendor_mtk_service_nvram_first_restore_prop)
 vendor_restricted_prop(vendor_mtk_service_connxo_nvram_file_prop)
 vendor_public_prop(vendor_mi_os_custfeatureresolve_prop)
 vendor_public_prop(vendor_usedframebuffer_prop)
+
+vendor_public_prop(vendor_audio_prop)

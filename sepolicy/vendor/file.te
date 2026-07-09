@@ -15,11 +15,6 @@ type touchfeature_device, dev_type;
 # Fingerprint
 type vendor_fingerprint_sysfs, sysfs_type, fs_type;
 
-# Trusted Execution Environment (TEE)
-type mitee_client_device, dev_type, mlstrustedobject;
-type mitee_data_file, data_file_type, file_type;
-type proc_mitee_log, fs_type, proc_type;
-
 # Thermal
 type vendor_sysfs_thermalconfig, sysfs_type, fs_type;
 
@@ -32,3 +27,6 @@ type sysfs_touch_hostprocess, sysfs_type, fs_type;
 type sysfs_tp_virtual_prox, sysfs_type, fs_type;
 type sysfs_touch_suspend, sysfs_type, fs_type;
 type sysfs_pen_connect_strategy_node, sysfs_type, fs_type;
+
+# Audio
+type audio_socket, file_type;
