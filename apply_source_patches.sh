@@ -2,7 +2,7 @@
 
 # Define the root of your AOSP tree
 AOSP_ROOT="${PWD}"
-PATCH_DIR="${AOSP_ROOT}/device/xiaomi/rodin/source-patches"
+PATCH_DIR="${AOSP_ROOT}/device/xiaomi/tanzanite/source-patches"
 
 # Safety check: Ensure we are at AOSP root (Space fixed here)
 if [ ! -f "build/envsetup.sh" ]; then
@@ -10,17 +10,14 @@ if [ ! -f "build/envsetup.sh" ]; then
     exit 1
 fi
 
-echo "======================================"
-echo " Applying source patches for rodin... "
-echo "======================================"
+echo "========================================="
+echo " Applying source patches for tanzanite... "
+echo "========================================="
 
 # Array of patches: "Destination_Repo_Path Patch_File_Name"
 PATCHES=(
-    "hardware/ril 0001-Android-RIL.patch"
-    "packages/apps/Aperture 0001-Aperture-Enable-MediaTek-HFPS-Mode-for-60-FPS-video-.patch"
-    "packages/apps/Aperture 0001-DNM-Aperture-Enable-MediaTek-EIS-and-EIS-preview-mod.patch"
-    "packages/modules/Bluetooth 0001-Add-L2CAP-and-A2DP-offload-coex-mechanism-for-MTK.patch"
-    "external/wpa_supplicant_8 0001-wpa_supplicant-Import-MediaTek-wlan-chips-OUI-change.patch"
+    "system/core/ fastboot_lock_bypass.patch"
+    "frameworks/base/ make_GhbmIlluminationListener_public.patch"
 )
 
 for entry in "${PATCHES[@]}"; do
@@ -62,6 +59,6 @@ done
 
 cd "${AOSP_ROOT}"
 echo -e "\n======================================"
-echo " All rodin patches processed!         "
+echo " All tanzanite patches processed!         "
 echo "======================================"
 echo

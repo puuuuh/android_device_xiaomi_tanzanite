@@ -1,1 +1,1 @@
-bash device/xiaomi/rodin/apply_source_patches.sh
+bash device/xiaomi/tanzanite/apply_source_patches.sh
