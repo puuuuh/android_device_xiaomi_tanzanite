@@ -1,4 +1,4 @@
-#
+
 # Copyright (C) 2025 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
@@ -33,6 +33,13 @@ $(call inherit-product, vendor/mediatek/ims/ims.mk)
 WITH_GMS := true
 TARGET_USES_PICO_GAPPS := true
 TARGET_ENABLE_BLUR := false
+
+# Security patch level
+VENDOR_SECURITY_PATCH := 2026-05-01
+BOOT_SECURITY_PATCH := 2026-05-01
+
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.vendor.boot_security_patch=$(BOOT_SECURITY_PATCH)
 
 # AB OTA Configuration
 AB_OTA_UPDATER := true
@@ -99,11 +106,6 @@ TARGET_EXCLUDES_AUDIOFX := true
 $(call soong_config_set_bool,android_hardware_audio,skip_speaker_layout_channel_mask_field,true)
 $(call soong_config_set,android_hardware_audio,run_64bit,true)
 PRODUCT_PACKAGES += \
-    android.hardware.audio@6.0-impl:64 \
-    android.hardware.audio@7.0-impl:64 \
-    android.hardware.audio@7.1-impl:64 \
-    android.hardware.audio.effect@6.0-impl:64 \
-    android.hardware.audio.effect@7.0-impl:64 \
     audio.usb.default:64 \
     audio.bluetooth.default:64 \
     android.hardware.bluetooth.audio-impl:64 \
@@ -117,8 +119,8 @@ PRODUCT_PACKAGES += \
     libtinycompress \
     libdynproc
 
-#PRODUCT_PACKAGES += \
-#    DolbyAtmos
+PRODUCT_PACKAGES += \
+    MtkInCallService
 
 # Audio Configuration
 PRODUCT_COPY_FILES += \
@@ -135,21 +137,15 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth.ranging-service.default \
     android.hardware.bluetooth.finder-service.default
 
-# Boot control (A/B Updates)
-PRODUCT_PACKAGES += \
-    com.android.hardware.boot \
-    android.hardware.boot-service.default_recovery
-
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.memtrack-service.mediatek-mali \
     android.frameworks.displayservice@1.0 \
-    android.hardware.atrace@1.0-service \
     android.hardware.media.omx@1.0 \
     android.hardware.oemlock@1.0.vendor:64 \
-    android.hardware.authsecret@1.0-service \
     android.system.suspend-service \
-    android.hardware.ir-service.example
+    android.hardware.ir-service.example \
+    LunarisDolby
 # PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@3.4-service \
     android.software.vulkan.deqp.level-2021-03-01.prebuilt.xml \
@@ -162,7 +158,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     com.android.hardware.drm.clearkey
 
+# Keymint
+PRODUCT_PACKAGES += \
+    android.hardware.hardware_keystore_V4.xml
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.keystore.app_attest_key.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.keystore.app_attest_key.xml \
+    frameworks/native/data/etc/android.software.device_id_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_id_attestation.xml \
+    frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.verified_boot.xml
+
 # FastbootD
+$(call soong_config_set_bool,fastbootd,bypass_lock_state,true)
 PRODUCT_PACKAGES += \
     fastbootd
 
@@ -371,7 +377,7 @@ include $(LOCAL_PATH)/vendor_logtag.mk
 
 # Sku properties
 PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/sku/,$(TARGET_COPY_OUT_ODM)/etc)
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/sku/,$(TARGET_COPY_OUT_VNDOR)/)
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -386,14 +392,15 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/google/pixel
 
 # Shipping API Level
-PRODUCT_SHIPPING_API_LEVEL := 33
+PRODUCT_SHIPPING_API_LEVEL := 34
 
 # Speed profile services and wifi-service to reduce RAM and storage.
 PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
 
 # Vibrator
-PRODUCT_PACKAGES += \
-    android.hardware.vibrator-service.mediatek
+#PRODUCT_PACKAGES += \
+#    android.hardware.vibrator-service.mediatek
+#
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/xiaomi/tanzanite/tanzanite-vendor.mk)
