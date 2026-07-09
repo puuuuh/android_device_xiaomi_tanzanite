@@ -11,14 +11,14 @@ import /vendor/etc/init/hw/init.fingerprint.rc
 
 #O6 code for HQFEAT-139101 by p-xuan at 20250628 start
 import /vendor/etc/init/nfc-service-tms.rc
-#O6 code for HQFEAT-139101 by p-xuan at 20250628 end
-
 # init.modem.rc must be the LAST rc file because vold.post_fs_data_done is set in it
 import /vendor/etc/init/hw/init.modem.rc
 # *** DO NOT import the new rc file after this line ***
 
 on early-init
     write /proc/bootprof "INIT:early-init"
+    rm /metadata/boot_log.txt
+    start logger
 
     # initialize vendor.all.modules.ready to 1 here to prevent NOT GKI project blocked
     setprop vendor.all.modules.ready 1
@@ -1187,6 +1187,7 @@ service mi_thermald /system/vendor/bin/mi_thermald
     user root
     group system
     seclabel u:r:mi_thermald:s0
+    disabled
 
 # Reduce Kernel Printk logging
 # https://github.com/nathanzerogarage/android_device_xiaomi_tanzanite/commit/8182ad8e9117d80d60ab83b625ea332c0452f15c
