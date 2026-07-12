@@ -402,5 +402,7 @@ PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
 #    android.hardware.vibrator-service.mediatek
 #
 
+TARGET_USES_VULKAN := true
+
 # Inherit the proprietary files
 $(call inherit-product, vendor/xiaomi/tanzanite/tanzanite-vendor.mk)
